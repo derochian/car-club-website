@@ -1,16 +1,15 @@
 /* ==========================================================================
-   [CLUB_NAME] — script.js
+   Country Car Show 2026 — script.js
    --------------------------------------------------------------------------
    This file does only the small things plain HTML cannot:
      1. Updates the copyright year in the footer.
-     2. When a "Register for this event" button is clicked, pre-selects the
-        matching event in the registration form's dropdown.
-     3. Validates the registration form on submit (showing clear error
-        messages above each invalid field) and submits via fetch() to
-        Netlify Forms so the visitor stays on the page.
-     4. If a visitor lands on the page with "?registered=true" in the URL
-        (the no-JavaScript fallback for the form's action attribute), shows
-        the same thank-you panel.
+     2. Validates the pre-registration form on submit (showing clear error
+        messages above each invalid field).
+     3. Shows a placeholder confirmation panel after a successful local
+        validation, because the form's real backend is not wired up yet.
+        When a real backend is added (Formspree / Netlify / Google Forms —
+        see index.html for setup notes), replace the placeholder branch with
+        the appropriate submit logic.
 
    It is deliberately small. There are no third-party libraries.
    ========================================================================== */
@@ -24,24 +23,9 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  // ----- 2. Pre-select event when "Register for this event" is clicked ---
-  var eventSelect = document.getElementById("event");
-  document.querySelectorAll("[data-event]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      if (!eventSelect) return;
-      var name = btn.getAttribute("data-event");
-      var match = Array.prototype.find.call(eventSelect.options, function (opt) {
-        return opt.value === name;
-      });
-      if (match) {
-        eventSelect.value = name;
-      }
-    });
-  });
-
-  // ----- 3. Form validation + AJAX submit --------------------------------
+  // ----- 2. Form validation ----------------------------------------------
   var form = document.getElementById("registration-form");
-  var successPanel = document.getElementById("form-success");
+  var placeholderPanel = document.getElementById("form-placeholder");
   var errorPanel = document.getElementById("form-error");
 
   // Friendlier wording than the browser's default validity messages.
@@ -49,8 +33,8 @@
     name: "your full name",
     email: "a valid email address",
     phone: "a phone number we can reach you at",
-    event: "which event you'd like to attend",
-    attendees: "the number of attendees (1 to 10)"
+    "vehicle-year": "the year of your vehicle",
+    "vehicle-make": "the make and model of your vehicle"
   };
 
   function setError(field, message) {
@@ -77,8 +61,6 @@
       msg = "Please enter " + label + ".";
     } else if (field.validity.typeMismatch && field.type === "email") {
       msg = "Please enter a valid email address (for example, name@example.com).";
-    } else if (field.validity.rangeUnderflow || field.validity.rangeOverflow) {
-      msg = "Please enter a number between 1 and 10.";
     } else if (field.validity.badInput) {
       msg = "Please enter a valid value for " + label + ".";
     } else {
@@ -88,42 +70,16 @@
     return false;
   }
 
-  function clearAllErrors() {
-    if (!form) return;
-    form.querySelectorAll(".form-row.has-error").forEach(function (row) {
-      row.classList.remove("has-error");
-    });
-    form.querySelectorAll(".field-error").forEach(function (el) {
-      el.textContent = "";
-    });
-  }
-
-  function showSuccess() {
-    if (form) form.hidden = true;
+  function showPlaceholder() {
+    // Until the form's backend is wired up, surface a polite "email us
+    // directly" message so visitors aren't left wondering what happened.
     if (errorPanel) errorPanel.hidden = true;
-    if (successPanel) {
-      successPanel.hidden = false;
-      // Move keyboard focus and scroll to the confirmation.
-      successPanel.setAttribute("tabindex", "-1");
-      successPanel.focus({ preventScroll: true });
-      successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (placeholderPanel) {
+      placeholderPanel.hidden = false;
+      placeholderPanel.setAttribute("tabindex", "-1");
+      placeholderPanel.focus({ preventScroll: true });
+      placeholderPanel.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }
-
-  function showSubmitError() {
-    if (errorPanel) {
-      errorPanel.hidden = false;
-      errorPanel.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  }
-
-  function encodeFormData(formEl) {
-    var data = new FormData(formEl);
-    var pairs = [];
-    data.forEach(function (value, key) {
-      pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
-    });
-    return pairs.join("&");
   }
 
   if (form) {
@@ -145,7 +101,7 @@
       var fields = form.querySelectorAll("input, select, textarea");
       var firstInvalid = null;
       fields.forEach(function (field) {
-        if (field.name === "bot-field" || field.type === "hidden") return;
+        if (field.type === "hidden") return;
         var ok = validateField(field);
         if (!ok && !firstInvalid) firstInvalid = field;
       });
@@ -154,43 +110,11 @@
         return;
       }
 
-      // All clear — submit to Netlify in the background.
-      var submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Submitting…";
-      }
-
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encodeFormData(form)
-      })
-        .then(function (response) {
-          if (response.ok) {
-            showSuccess();
-          } else {
-            showSubmitError();
-          }
-        })
-        .catch(function () {
-          showSubmitError();
-        })
-        .finally(function () {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Submit Registration";
-          }
-        });
+      // All clear — but the real submit endpoint isn't set up yet, so show
+      // the placeholder message. When you wire a real backend (Formspree,
+      // Netlify, etc.), replace this branch with a fetch() to that endpoint.
+      showPlaceholder();
     });
   }
-
-  // ----- 4. No-JS fallback: show success when arriving with ?registered=true
-  try {
-    var params = new URLSearchParams(window.location.search);
-    if (params.get("registered") === "true") {
-      showSuccess();
-    }
-  } catch (e) { /* old browser — silently ignore */ }
 
 })();

@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Central Fraser Valley Chapter — a community of vintage automobile enthusiasts. Monthly meetings, scenic tours, and club events for restorers, drivers, and admirers of classic cars.">
-  <meta name="theme-color" content="#722F37">
+  <meta name="description" content="Country Car Show 2026 — Sunday April 26, hosted by the Central Fraser Valley Chapter of the Vintage Car Club of Canada. Aldergrove Community Secondary School. Vintage cars, raffle, trophies, food and entertainment.">
+  <meta name="theme-color" content="#1A2A5C">
 
   <!-- Open Graph (for link previews when the site is shared) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Central Fraser Valley Chapter">
-  <meta property="og:description" content="Vintage Car Club of Canada — Fraser Valley Chapter">
+  <meta property="og:title" content="Country Car Show 2026 — Sunday April 26, Aldergrove">
+  <meta property="og:description" content="12th Annual Country Car Show — hosted by the Central Fraser Valley Chapter of the VCCC.">
   <meta property="og:locale" content="en_CA">
 
-  <title>Central Fraser Valley Chapter — Vintage Car Club</title>
+  <title>Country Car Show 2026 — Sunday April 26, Aldergrove</title>
 
-  <!-- Inline-SVG favicon: a simple steering wheel in the club's burgundy accent.
+  <!-- Inline-SVG favicon: a simple steering wheel in the show's navy accent.
        No separate file needed. To change it, edit the SVG below. -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='26' fill='none' stroke='%23722F37' stroke-width='5'/><circle cx='32' cy='32' r='5' fill='%23722F37'/><path d='M32 6v20M6 32h20M58 32H38M32 58V38' stroke='%23722F37' stroke-width='5' stroke-linecap='round'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='26' fill='none' stroke='%231A2A5C' stroke-width='5'/><circle cx='32' cy='32' r='5' fill='%231A2A5C'/><path d='M32 6v20M6 32h20M58 32H38M32 58V38' stroke='%231A2A5C' stroke-width='5' stroke-linecap='round'/></svg>">
 
   <!-- Google Fonts: Playfair Display (serif headings) + Source Sans 3 (body).
        These are the only external resources the site loads. -->
@@ -30,46 +30,31 @@
 
 <!--
 ================================================================================
-  CONFIG — what's filled in, what's still a placeholder
+  COUNTRY CAR SHOW 2026 — content map
 ================================================================================
 
-  Most values in this file have been filled in for the Central Fraser Valley
-  Chapter. The list below shows which are real and which are still
-  [SQUARE_BRACKET] placeholders for the club to set.
+  This is the single-event site for the Country Car Show, hosted annually by
+  the Central Fraser Valley Chapter of the Vintage Car Club of Canada (VCCC).
+  Most content is filled in from the 2026 event poster. Updating it for next
+  year? In FrontPage 2003 or any plain editor, use Find & Replace.
 
-  ── BEFORE THE FIRST DEPLOY ─────────────────────────────────────────────────
-    [CLUB_EMAIL]               STILL A PLACEHOLDER. The site is currently set
-                               up to leave this empty so the club can choose a
-                               shared inbox (Gmail, iCloud, etc.) before
-                               launch instead of using one person's address.
-                               Once chosen, do Find & Replace:
-                                 [CLUB_EMAIL]  →  the chosen address.
+  ── COMMON ANNUAL UPDATES ────────────────────────────────────────────────
+    "12th Annual"                  → bump the number
+    "Sunday, April 26, 2026"       → next year's date
+    "April 26"                     → short date in nav/social tags
+    "$20 online / $25 at gate"     → ticket prices
+    "Aldergrove Community Secondary School"  → only if the venue changes
+    "John Lundgren" / contact info → if the chairman changes
 
-  ── ALREADY FILLED IN (edit only when these change) ────────────────────────
-    Club identity     name, tagline, phone, mailing address
-    Meeting info      day, time, location
-    Events 1–5        name, date, location, description
-    Executives 1–6    name, role
-    Photo gallery     event subheadings reuse [EVENT_X_NAME]; photo slot
-                      captions are [EVENT_1_PHOTO_1]…[EVENT_5_PHOTO_6]
+  ── PHOTO GALLERY ─────────────────────────────────────────────────────────
+    Twelve placeholder tiles labelled [PHOTO_1] through [PHOTO_12].
+    Replace each <li class="gallery-item"> with an <img> when you have a
+    real photo — see README.md.
 
-  ── PLACEHOLDERS RICHARD WILL EDIT ROUTINELY ────────────────────────────────
-    [EVENT_1_PHOTO_1] … [EVENT_5_PHOTO_6]
-        Caption text shown inside each placeholder gallery tile (e.g.
-        "Lineup at the gate"). Replace the entire placeholder <li> with
-        an <img> tag when you have a real photo for the slot — see
-        README.md, "How to add photos to an event gallery". Empty / unused
-        tiles can simply be deleted.
-
-  ── HOW TO UPDATE A VALUE THE *SECOND* TIME ─────────────────────────────────
-    On first fill-in, you Find & Replace e.g. [CLUB_PHONE] → 604-856-1949.
-    Next time the phone number changes the placeholder is GONE — search
-    instead for the *current* value (604-856-1949) and replace it with
-    the new number. Same idea for any other value.
-
-  ── WHERE FORM SUBMISSIONS GO ───────────────────────────────────────────────
-    Form submissions are saved to the Netlify dashboard and (if configured)
-    emailed to a club contact. See README.md section 4 for setup.
+  ── PRE-REGISTRATION FORM ─────────────────────────────────────────────────
+    The form on this page does NOT yet submit anywhere — see the TODO
+    comment directly above the <form> tag. For now, submissions show an
+    inline message asking the visitor to email John Lundgren directly.
 
 ================================================================================
 -->
@@ -83,21 +68,21 @@
   <div class="header-top">
     <div class="brand">
       <a href="#top" class="brand-link">
-        <span class="brand-name">Central Fraser Valley Chapter</span>
-        <span class="brand-tagline">Vintage Car Club of Canada — Fraser Valley Chapter</span>
+        <span class="brand-name">Country Car Show</span>
+        <span class="brand-tagline">12th Annual — Sunday, April 26, 2026 — Aldergrove, BC</span>
       </a>
     </div>
-    <a class="header-phone" href="tel:604-856-1949" aria-label="Call us at 604-856-1949">
-      <span class="header-phone-label">Call us:</span>
-      <span class="header-phone-number">604-856-1949</span>
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
     </a>
   </div>
   <nav class="site-nav" aria-label="Primary">
     <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#register"><strong>Register</strong></a></li>
+      <li><a href="#details">Event Details</a></li>
+      <li><a href="#register"><strong>Pre-Register</strong></a></li>
       <li><a href="#gallery">Photos</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -107,214 +92,129 @@
   <a id="top"></a>
 
   <!-- ============================================================ -->
-  <!-- HERO — short welcome and primary call-to-action              -->
+  <!-- HERO — show headline + primary call-to-action                -->
   <!-- ============================================================ -->
   <section class="hero" aria-labelledby="hero-heading">
     <div class="container">
-      <h1 id="hero-heading">Welcome to the Central Fraser Valley Chapter</h1>
+      <p class="hero-eyebrow">12th Annual</p>
+      <h1 id="hero-heading">Country Car Show 2026</h1>
+      <p class="hero-date">Sunday, April 26, 2026 &middot; 9 AM &ndash; 3 PM</p>
       <p class="hero-message">
-        We are a community of vintage automobile enthusiasts who gather to share
-        the cars, the stories, and the open road. Whether you own a classic,
-        you're working on one, or you simply love seeing them, you are welcome here.
+        Hosted by the Central Fraser Valley Chapter of the
+        Vintage Car Club of Canada at the Aldergrove Community Secondary School.
+        Free admission for spectators &mdash; bring the family.
       </p>
       <p>
-        <a class="btn btn-primary btn-large" href="#register">Register for an Event</a>
+        <a class="btn btn-primary btn-large" href="#register">Pre-Register Your Vehicle</a>
       </p>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- ABOUT — club description and meeting info                    -->
+  <!-- EVENT DETAILS — date, times, location, ticket prices, extras -->
   <!-- ============================================================ -->
-  <section id="about" class="section section-light">
+  <section id="details" class="section section-light">
     <div class="container">
-      <h2>About Our Club</h2>
+      <h2>Event Details</h2>
       <p>
-        The Central Fraser Valley Chapter is a chapter of the Vintage Car Club of Canada, dedicated
-        to the preservation, restoration, and enjoyment of classic and collector
-        automobiles. Our members range from seasoned restorers to first-time
-        owners, all united by a love of these cars and the friendships they bring.
-      </p>
-      <p>
-        Throughout the year we organize tours, picnics, shows, and informal
-        drives. New members are always welcome — you do not need to own a
-        vintage vehicle to join.
-      </p>
-      <p>
-        Membership dues support club operations and are payable annually.
-        Please contact us using the information at the bottom of the page if
-        you would like to learn more or attend a meeting as a guest.
+        The Country Car Show is a one-day vintage and classic car show held each
+        spring in Aldergrove, British Columbia. Partial proceeds support the
+        ACSS Automotive Program &mdash; helping local youth enter the automotive
+        profession.
       </p>
 
-      <div class="meeting-info" role="region" aria-labelledby="meeting-heading">
-        <h3 id="meeting-heading">When We Meet</h3>
+      <div class="meeting-info" role="region" aria-labelledby="details-heading">
+        <h3 id="details-heading">When &amp; Where</h3>
         <dl class="meeting-list">
-          <dt>Day</dt>
-          <dd>First Wednesday of every month</dd>
-          <dt>Time</dt>
-          <dd>7:00 PM</dd>
+          <dt>Date</dt>
+          <dd>Sunday, April 26, 2026</dd>
+          <dt>Registration</dt>
+          <dd>7:00 AM &ndash; 9:00 AM</dd>
+          <dt>Show Hours</dt>
+          <dd>9:00 AM &ndash; 3:00 PM</dd>
+          <dt>Trophies Awarded</dt>
+          <dd>2:30 PM</dd>
           <dt>Location</dt>
-          <dd>Legacy Room — 32470 Trethewey Street, Gate 1</dd>
+          <dd>Aldergrove Community Secondary School<br>26850 &mdash; 29th Avenue, Aldergrove, BC</dd>
+          <dt>Entry Fee</dt>
+          <dd><strong>$20 online</strong> (pre-register below, opens April 1)<br><strong>$25 at the gate</strong></dd>
+          <dt>Spectators</dt>
+          <dd>Free admission</dd>
         </dl>
       </div>
+
+      <h3>What to Expect</h3>
+      <ul>
+        <li>Vintage and classic cars from across the Fraser Valley</li>
+        <li>Trophies awarded at 2:30 PM</li>
+        <li>Raffle and 50/50 draw</li>
+        <li>Dash plaques for the first registered entries</li>
+        <li>Food and entertainment on site</li>
+        <li>Family-friendly, all ages welcome</li>
+      </ul>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- UPCOMING EVENTS — to add an event:                           -->
-  <!--   1. Copy any <li class="event"> block below.                -->
-  <!--   2. Paste it inside the <ol class="events"> list.           -->
-  <!--   3. Update the values inside (name, date, location, desc).  -->
-  <!--   4. Add a matching <option> to the <select id="event">      -->
-  <!--      down in the registration form.                          -->
+  <!-- PRE-REGISTER FORM — vehicle pre-registration                 -->
+  <!--                                                              -->
+  <!-- TODO: WIRE UP A REAL BACKEND BEFORE LAUNCH.                  -->
+  <!-- Right now this form does NOT send submissions anywhere.      -->
+  <!-- On submit, script.js intercepts and shows an inline message  -->
+  <!-- asking the visitor to email John Lundgren directly. Three    -->
+  <!-- options to wire real submission, easiest first:              -->
+  <!--                                                              -->
+  <!--   1. Formspree (https://formspree.io)                        -->
+  <!--      Sign up, get a form ID, then change <form action>       -->
+  <!--      to "https://formspree.io/f/YOUR_FORM_ID" and method     -->
+  <!--      "POST". Free plan: 50 submissions/month.                -->
+  <!--                                                              -->
+  <!--   2. Netlify Forms (requires moving hosting to Netlify)      -->
+  <!--      Re-add data-netlify="true" and the bot-field honeypot,  -->
+  <!--      and deploy to Netlify instead of GitHub Pages.          -->
+  <!--                                                              -->
+  <!--   3. Google Forms                                            -->
+  <!--      Build the form in Google Forms, embed the iframe        -->
+  <!--      here, and delete this whole <form> block.               -->
   <!-- ============================================================ -->
-  <section id="events" class="section">
+  <section id="register" class="section">
     <div class="container">
-      <h2>Upcoming Events</h2>
+      <h2>Pre-Register Your Vehicle</h2>
       <p class="section-intro">
-        Click "Register for this event" beside any event to jump to the
-        registration form with the event already selected.
-      </p>
-
-      <ol class="events" role="list">
-
-        <!-- EVENT 1 -->
-        <li class="event">
-          <h3 class="event-name">Bevan Lodge Car Show</h3>
-          <p class="event-meta">
-            <span class="event-meta-item"><strong>Date:</strong> Friday, June 19, 2026</span>
-            <span class="event-meta-item"><strong>Location:</strong> Bevan Lodge</span>
-          </p>
-          <p class="event-description">10 am start time. BBQ burgers, salads, maybe even dessert.</p>
-          <p>
-            <a class="btn btn-secondary" href="#register" data-event="Bevan Lodge Car Show">
-              Register for this event
-            </a>
-          </p>
-        </li>
-
-        <!-- EVENT 2 -->
-        <li class="event">
-          <h3 class="event-name">Old Farts Car Show</h3>
-          <p class="event-meta">
-            <span class="event-meta-item"><strong>Date:</strong> Sunday, July 12, 2026</span>
-            <span class="event-meta-item"><strong>Location:</strong> Vanguard School, 3825 — 244th Street</span>
-          </p>
-          <p class="event-description">Annual classic-car gathering hosted at Vanguard School.</p>
-          <p>
-            <a class="btn btn-secondary" href="#register" data-event="Old Farts Car Show">
-              Register for this event
-            </a>
-          </p>
-        </li>
-
-        <!-- EVENT 3 -->
-        <li class="event">
-          <h3 class="event-name">Waddell's Air Show Party</h3>
-          <p class="event-meta">
-            <span class="event-meta-item"><strong>Date:</strong> Saturday, August 8, 2026</span>
-            <span class="event-meta-item"><strong>Location:</strong> Hosted by The Waddells</span>
-          </p>
-          <p class="event-description">Member-hosted air show viewing party.</p>
-          <p>
-            <a class="btn btn-secondary" href="#register" data-event="Waddell's Air Show Party">
-              Register for this event
-            </a>
-          </p>
-        </li>
-
-        <!-- EVENT 4 -->
-        <li class="event">
-          <h3 class="event-name">Club Picnic</h3>
-          <p class="event-meta">
-            <span class="event-meta-item"><strong>Date:</strong> Saturday, August 15, 2026</span>
-            <span class="event-meta-item"><strong>Location:</strong> TBA — hosted by Ron and Pat Morris with Terry and Donna Johnson</span>
-          </p>
-          <p class="event-description">Annual chapter picnic, organized by member-host families.</p>
-          <p>
-            <a class="btn btn-secondary" href="#register" data-event="Club Picnic">
-              Register for this event
-            </a>
-          </p>
-        </li>
-
-        <!-- EVENT 5 -->
-        <li class="event">
-          <h3 class="event-name">Christmas Party</h3>
-          <p class="event-meta">
-            <span class="event-meta-item"><strong>Date:</strong> Saturday, December 12, 2026</span>
-            <span class="event-meta-item"><strong>Location:</strong> TBA</span>
-          </p>
-          <p class="event-description">Annual chapter Christmas celebration.</p>
-          <p>
-            <a class="btn btn-secondary" href="#register" data-event="Christmas Party">
-              Register for this event
-            </a>
-          </p>
-        </li>
-
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- EVENT REGISTRATION FORM — primary feature of the site.       -->
-  <!-- Submitted via Netlify Forms (data-netlify="true"). Each      -->
-  <!-- submission appears in your Netlify dashboard under "Forms"   -->
-  <!-- AND is emailed to the recipient configured there.            -->
-  <!-- See README.md for setup instructions.                        -->
-  <!-- ============================================================ -->
-  <section id="register" class="section section-light">
-    <div class="container">
-      <h2>Register for an Event</h2>
-      <p class="section-intro">
-        Please complete the form below. Fields marked
+        Pre-registration is <strong>$20</strong> (vs $25 at the gate) and opens
+        online <strong>April 1, 2026</strong>. Fields marked
         <span class="required">(required)</span> must be filled in.
-        After you press <em>Submit Registration</em>, we will receive your
-        registration by email and follow up with you directly.
       </p>
 
-      <!-- Confirmation panel: hidden until JavaScript reveals it after a successful submit. -->
-      <div id="form-success" class="form-success" hidden role="status" aria-live="polite">
-        <h3>Thank you — your registration has been received.</h3>
+      <!-- Placeholder panel: shown after a submit attempt until the real backend is wired up. -->
+      <div id="form-placeholder" class="form-success" hidden role="status" aria-live="polite">
+        <h3>Online pre-registration opens April 1, 2026.</h3>
         <p>
-          We have your details and will be in touch shortly. If you have any
-          questions in the meantime, please call <a href="tel:604-856-1949">604-856-1949</a>.
+          To reserve your spot now, please email
+          <a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a>
+          or call <a href="tel:604-309-8368">604-309-8368</a>.
+          We'll save these details and add the online submit button as soon as
+          it's ready.
         </p>
       </div>
 
-      <!-- Error panel: shown if the network submission fails. -->
+      <!-- Error panel: shown if the network submission fails (kept for when a real backend is wired). -->
       <div id="form-error" class="form-error" hidden role="alert">
         <h3>We couldn't submit your registration.</h3>
         <p>
           Something went wrong sending the form. Please try again, or call
-          <a href="tel:604-856-1949">604-856-1949</a> to register by phone.
+          <a href="tel:604-309-8368">604-309-8368</a> to register by phone.
         </p>
       </div>
 
       <form
         id="registration-form"
-        name="event-registration"
+        name="country-car-show-pre-register"
         method="POST"
-        action="/thank-you.html"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
+        action="#"
         class="registration-form"
         novalidate
       >
-        <!-- Required by Netlify so the form is detected at deploy time. -->
-        <input type="hidden" name="form-name" value="event-registration">
-
-        <!-- Honeypot: real visitors leave this empty; bots tend to fill every field.
-             Visually hidden via the .hp-field CSS rule. No aria-hidden so the
-             label remains discoverable to assistive tech that lands on it. -->
-        <p class="hp-field">
-          <label>
-            Don't fill this out if you're human:
-            <input name="bot-field" tabindex="-1" autocomplete="off">
-          </label>
-        </p>
-
         <div class="form-row">
           <label for="name">Full name <span class="required">(required)</span></label>
           <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-error">
@@ -329,59 +229,41 @@
 
         <div class="form-row">
           <label for="phone">Phone number <span class="required">(required)</span></label>
-          <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="" aria-describedby="phone-error">
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-describedby="phone-error">
           <span class="field-error" id="phone-error" aria-live="polite"></span>
         </div>
 
         <div class="form-row">
-          <label for="event">Which event? <span class="required">(required)</span></label>
-          <!--
-            IMPORTANT: keep these <option> values in sync with the events listed
-            above. When you rename an event, do Find & Replace on the *current*
-            event name (e.g. "Bevan Lodge Car Show") to update both at once.
-          -->
-          <select id="event" name="event" required aria-describedby="event-error">
-            <option value="">— Choose an event —</option>
-            <option value="Bevan Lodge Car Show">Bevan Lodge Car Show</option>
-            <option value="Old Farts Car Show">Old Farts Car Show</option>
-            <option value="Waddell's Air Show Party">Waddell's Air Show Party</option>
-            <option value="Club Picnic">Club Picnic</option>
-            <option value="Christmas Party">Christmas Party</option>
-          </select>
-          <span class="field-error" id="event-error" aria-live="polite"></span>
+          <label for="vehicle-year">Vehicle year <span class="required">(required)</span></label>
+          <input type="text" id="vehicle-year" name="vehicle-year" required autocomplete="off" aria-describedby="vehicle-year-hint vehicle-year-error">
+          <span class="field-hint" id="vehicle-year-hint">For example: 1957</span>
+          <span class="field-error" id="vehicle-year-error" aria-live="polite"></span>
         </div>
 
         <div class="form-row">
-          <label for="attendees">Number of attendees <span class="required">(required)</span></label>
-          <input type="number" id="attendees" name="attendees" required min="1" max="10" value="1" inputmode="numeric" aria-describedby="attendees-hint attendees-error">
-          <span class="field-hint" id="attendees-hint">Including yourself. Maximum 10.</span>
-          <span class="field-error" id="attendees-error" aria-live="polite"></span>
+          <label for="vehicle-make">Vehicle make &amp; model <span class="required">(required)</span></label>
+          <input type="text" id="vehicle-make" name="vehicle-make" required autocomplete="off" aria-describedby="vehicle-make-hint vehicle-make-error">
+          <span class="field-hint" id="vehicle-make-hint">For example: Chevrolet Bel Air</span>
+          <span class="field-error" id="vehicle-make-error" aria-live="polite"></span>
         </div>
 
         <div class="form-row">
-          <label for="vehicle">Vehicle (make, model, year) <span class="optional">(optional)</span></label>
-          <input type="text" id="vehicle" name="vehicle" autocomplete="off" placeholder="" aria-describedby="vehicle-hint">
-          <span class="field-hint" id="vehicle-hint">Example: 1967 Ford Mustang</span>
-        </div>
-
-        <div class="form-row">
-          <label for="notes">Notes or dietary restrictions <span class="optional">(optional)</span></label>
+          <label for="notes">Anything else we should know? <span class="optional">(optional)</span></label>
           <textarea id="notes" name="notes" rows="4"></textarea>
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn btn-primary btn-submit">Submit Registration</button>
+          <button type="submit" class="btn btn-primary btn-submit">Submit Pre-Registration</button>
         </div>
       </form>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- PHOTO GALLERY — one mini-gallery per event.                  -->
+  <!-- PHOTO GALLERY — past Country Car Show photos                 -->
   <!--                                                              -->
-  <!-- Each event below has its own subheading and a grid of up to  -->
-  <!-- six photo slots. Until real photos are added, every slot is  -->
-  <!-- a labelled placeholder tile (dashed border + diagonal        -->
+  <!-- Twelve placeholder tiles. Until real photos are added, every -->
+  <!-- slot is a labelled placeholder (dashed border + diagonal     -->
   <!-- stripes) so visitors and the maintainer can clearly tell     -->
   <!-- which spots still need filling.                              -->
   <!--                                                              -->
@@ -396,117 +278,78 @@
   <!--             alt="Short description of what's in the photo">  -->
   <!--      </li>                                                   -->
   <!--                                                              -->
-  <!-- See README.md, "How to add photos to an event gallery", for  -->
-  <!-- step-by-step instructions written for a non-technical        -->
-  <!-- volunteer.                                                   -->
+  <!-- See README.md, "How to add photos to the gallery", for       -->
+  <!-- step-by-step instructions written for a non-technical user.  -->
   <!-- ============================================================ -->
-  <section id="gallery" class="section">
+  <section id="gallery" class="section section-light">
     <div class="container container-wide">
-      <h2>Photos from Past Events</h2>
+      <h2>Photos from Past Shows</h2>
       <p class="section-intro">
-        Below are five recent club events, each with its own set of photos.
-        Tiles with diagonal stripes are placeholders waiting for real
-        photographs — see <a href="README.md">README.md</a> to add yours.
+        Tiles with diagonal stripes are placeholders waiting for real photos
+        from past Country Car Shows. See <a href="README.md">README.md</a> for
+        how to drop yours in.
       </p>
 
-      <!-- GALLERY EVENT 1 — Bevan Lodge Car Show -->
-      <section class="gallery-event" aria-labelledby="gallery-event-1-heading">
-        <h3 id="gallery-event-1-heading" class="gallery-event-name">Bevan Lodge Car Show</h3>
+      <section class="gallery-event" aria-labelledby="gallery-heading">
+        <h3 id="gallery-heading" class="gallery-event-name">Past Country Car Shows</h3>
         <ul class="gallery" role="list">
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_1_PHOTO_1]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_1_PHOTO_2]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_1_PHOTO_3]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_1_PHOTO_4]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_1_PHOTO_5]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_1_PHOTO_6]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_1]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_2]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_3]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_4]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_5]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_6]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_7]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_8]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_9]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_10]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_11]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_12]</span></li>
         </ul>
       </section>
-
-      <!-- GALLERY EVENT 2 — Old Farts Car Show -->
-      <section class="gallery-event" aria-labelledby="gallery-event-2-heading">
-        <h3 id="gallery-event-2-heading" class="gallery-event-name">Old Farts Car Show</h3>
-        <ul class="gallery" role="list">
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_2_PHOTO_1]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_2_PHOTO_2]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_2_PHOTO_3]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_2_PHOTO_4]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_2_PHOTO_5]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_2_PHOTO_6]</span></li>
-        </ul>
-      </section>
-
-      <!-- GALLERY EVENT 3 — Waddell's Air Show Party -->
-      <section class="gallery-event" aria-labelledby="gallery-event-3-heading">
-        <h3 id="gallery-event-3-heading" class="gallery-event-name">Waddell's Air Show Party</h3>
-        <ul class="gallery" role="list">
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_3_PHOTO_1]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_3_PHOTO_2]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_3_PHOTO_3]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_3_PHOTO_4]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_3_PHOTO_5]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_3_PHOTO_6]</span></li>
-        </ul>
-      </section>
-
-      <!-- GALLERY EVENT 4 — Club Picnic -->
-      <section class="gallery-event" aria-labelledby="gallery-event-4-heading">
-        <h3 id="gallery-event-4-heading" class="gallery-event-name">Club Picnic</h3>
-        <ul class="gallery" role="list">
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_4_PHOTO_1]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_4_PHOTO_2]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_4_PHOTO_3]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_4_PHOTO_4]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_4_PHOTO_5]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_4_PHOTO_6]</span></li>
-        </ul>
-      </section>
-
-      <!-- GALLERY EVENT 5 — Christmas Party -->
-      <section class="gallery-event" aria-labelledby="gallery-event-5-heading">
-        <h3 id="gallery-event-5-heading" class="gallery-event-name">Christmas Party</h3>
-        <ul class="gallery" role="list">
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_5_PHOTO_1]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_5_PHOTO_2]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_5_PHOTO_3]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_5_PHOTO_4]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_5_PHOTO_5]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[EVENT_5_PHOTO_6]</span></li>
-        </ul>
-      </section>
-
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- CONTACT — phone, email, mail, executive list                 -->
+  <!-- SPONSORS — text-only for launch; logos drop in later         -->
+  <!-- ============================================================ -->
+  <section id="sponsors" class="section">
+    <div class="container container-wide">
+      <h2>Thank You to Our Sponsors</h2>
+      <p class="section-intro">
+        The Country Car Show is made possible by the generosity of our local
+        sponsors. Please support the businesses that support our show.
+      </p>
+      <ul class="sponsors" role="list">
+        <li class="sponsor">K&amp;M Tune-Up Centre</li>
+        <li class="sponsor">Fresh Co &mdash; Aldergrove Location</li>
+        <li class="sponsor">Zone Garage</li>
+        <li class="sponsor">Sunrise Trailer Sales &amp; Rentals</li>
+        <li class="sponsor">Reimer Hardwoods</li>
+        <li class="sponsor">Glass World</li>
+        <li class="sponsor">TAP Pest Control</li>
+        <li class="sponsor">IDK Decals</li>
+        <li class="sponsor">The Badass Garage</li>
+        <li class="sponsor">JD Farms</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT — show chairman                                      -->
   <!-- ============================================================ -->
   <section id="contact" class="section section-light">
-    <div class="container container-wide">
-      <h2>Contact Us</h2>
-      <div class="contact-grid">
-        <div class="contact-block">
-          <h3>Get in Touch</h3>
-          <dl class="contact-list">
-            <dt>Phone</dt>
-            <dd><a href="tel:604-856-1949">604-856-1949</a></dd>
-            <dt>Email</dt>
-            <dd><a href="mailto:[CLUB_EMAIL]">[CLUB_EMAIL]</a></dd>
-            <dt>Mail</dt>
-            <dd>30488 Great Northern Ave, Abbotsford, BC V2T 6Y6</dd>
-          </dl>
-        </div>
-
-        <div class="contact-block">
-          <h3>Club Executives</h3>
-          <ul class="executives" role="list">
-            <li><strong>Allan Ganske</strong><span class="exec-role"> — President</span></li>
-            <li><strong>Gordon Taylor</strong><span class="exec-role"> — Vice President</span></li>
-            <li><strong>Kathy Nicolette</strong><span class="exec-role"> — Secretary</span></li>
-            <li><strong>Colleen Broderick</strong><span class="exec-role"> — Treasurer</span></li>
-            <li><strong>Ken Hall</strong><span class="exec-role"> — Events Coordinator (with Wendy Hall)</span></li>
-            <li><strong>John Lundgren</strong><span class="exec-role"> — Country Car Show Chairman</span></li>
-          </ul>
-        </div>
+    <div class="container">
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <h3>Country Car Show Chairman</h3>
+        <p><strong>John Lundgren</strong></p>
+        <dl class="contact-list">
+          <dt>Email</dt>
+          <dd><a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a></dd>
+          <dt>Phone</dt>
+          <dd><a href="tel:604-309-8368">604-309-8368</a></dd>
+        </dl>
       </div>
     </div>
   </section>
@@ -518,10 +361,12 @@
 <!-- ============================================================== -->
 <footer class="site-footer" role="contentinfo">
   <div class="container container-wide">
-    <p>&copy; <span id="current-year">2026</span> Central Fraser Valley Chapter. All rights reserved.</p>
+    <p>&copy; <span id="current-year">2026</span> Central Fraser Valley Chapter, Vintage Car Club of Canada. All rights reserved.</p>
     <p>
-      Affiliated with the
-      <a href="https://vccc.com" rel="noopener external">Vintage Car Club of Canada</a>.
+      Visit our chapter site at
+      <a href="https://fraservalley.vccc.com" rel="noopener external">fraservalley.vccc.com</a>
+      &middot; National club:
+      <a href="https://vccc.com" rel="noopener external">Vintage Car Club of Canada</a>
     </p>
   </div>
 </footer>
