@@ -1,0 +1,814 @@
+/* ==========================================================================
+   [CLUB_NAME] — stylesheet
+   --------------------------------------------------------------------------
+   Organized in this order:
+     1.  Custom properties (colors, fonts, spacing)
+     2.  Reset & base
+     3.  Typography & links
+     4.  Layout containers
+     5.  Skip link & accessibility helpers
+     6.  Header & navigation
+     7.  Hero
+     8.  Generic sections
+     9.  About / meeting info
+    10.  Events list
+    11.  Buttons
+    12.  Registration form
+    13.  Form success / error panels
+    14.  Photo gallery
+    15.  Contact section
+    16.  Footer
+    17.  Mobile media queries (at the bottom)
+
+   Older audience considerations:
+     - Body text 18–20 px
+     - Line-height 1.6
+     - High-contrast text on cream/white backgrounds (no gray on white)
+     - Visible focus rings
+     - In-content links underlined
+     - Buttons ≥ 48 px tall, form submit ≥ 56 px
+   ========================================================================== */
+
+
+/* 1. Custom properties --------------------------------------------------- */
+:root {
+  /* Colors (classic vintage automotive palette) */
+  --color-bg:               #F8F4EC;
+  --color-bg-alt:           #FFFFFF;
+  --color-surface:          #FFFFFF;
+  --color-text:             #1A1A1A;
+  --color-text-muted:       #3A3A3A;
+  --color-accent:           #722F37;
+  --color-accent-dark:      #5A1F26;
+  --color-accent-light:     #8C434B;
+  --color-accent-secondary: #B8862B;
+  --color-accent-secondary-dark: #8E6620;
+  --color-border:           #D4CDB8;
+  --color-border-strong:    #B8B19E;
+  --color-error:            #A02830;
+  --color-error-bg:         #FBEDEE;
+  --color-success:          #3A6B35;
+  --color-success-bg:       #EDF4EC;
+
+  /* Typography */
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body:    "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --fs-base:   20px;     /* body */
+  --fs-small:  17px;     /* footnotes / hints */
+  --fs-h1:     46px;
+  --fs-h2:     34px;
+  --fs-h3:     26px;
+
+  /* Spacing */
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  40px;
+  --space-xl:  64px;
+  --space-xxl: 96px;
+
+  /* Layout */
+  --width-content: 720px;
+  --width-wide:    1080px;
+  --radius:        4px;
+
+  /* Used by anchor scrolling so headings don't hide under the sticky header. */
+  --header-offset: 170px;
+}
+
+
+/* 2. Reset & base -------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg { max-width: 100%; height: auto; display: block; }
+
+ol, ul { padding-left: 1.4em; }
+
+
+/* 3. Typography & links -------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1.25;
+  margin: 0 0 var(--space-md);
+}
+
+h1 { font-size: var(--fs-h1); letter-spacing: -0.01em; }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); color: var(--color-text); }
+
+p { margin: 0 0 var(--space-md); }
+
+p + p { margin-top: 0; }
+
+strong { font-weight: 700; }
+em     { font-style: italic; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-accent-dark);
+  text-decoration-thickness: 3px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent-secondary-dark);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+
+/* 4. Layout containers --------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--width-content);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.container-wide {
+  max-width: var(--width-wide);
+}
+
+
+/* 5. Skip link & accessibility helpers ---------------------------------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-accent);
+  color: #fff;
+  padding: var(--space-sm) var(--space-md);
+  z-index: 1000;
+  text-decoration: underline;
+}
+.skip-link:focus {
+  left: var(--space-md);
+  top: var(--space-md);
+}
+
+.required {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+.optional {
+  color: var(--color-text-muted);
+  font-weight: 400;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+/* Honeypot field: invisible to humans, picked up by bots. */
+.hp-field {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+
+/* 6. Header & navigation ------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg-alt);
+  border-bottom: 4px solid var(--color-accent);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.header-top {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.brand-link:hover,
+.brand-link:focus-visible { color: inherit; }
+
+.brand-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1.1;
+}
+.brand-tagline {
+  display: block;
+  font-size: 18px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.header-phone {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 700;
+  background: var(--color-bg);
+  padding: var(--space-xs) var(--space-md);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  line-height: 1.2;
+  min-height: 48px;
+  justify-content: center;
+}
+.header-phone:hover,
+.header-phone:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+  text-decoration: none;
+}
+.header-phone-label {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: inherit;
+}
+.header-phone-number {
+  font-size: 22px;
+  font-family: var(--font-body);
+}
+
+.site-nav {
+  background: var(--color-accent);
+}
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: var(--width-wide);
+  margin: 0 auto;
+}
+.site-nav li { margin: 0; }
+.site-nav a {
+  display: block;
+  padding: 14px 22px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 600;
+  border-bottom: 4px solid transparent;
+  min-height: 48px;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  background: var(--color-accent-dark);
+  color: #fff;
+  border-bottom-color: var(--color-accent-secondary);
+}
+
+
+/* 7. Hero ---------------------------------------------------------------- */
+.hero {
+  background:
+    linear-gradient(rgba(248, 244, 236, 0.85), rgba(248, 244, 236, 0.85)),
+    var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-xl) 0 var(--space-xl);
+  text-align: center;
+}
+.hero h1 {
+  margin-bottom: var(--space-md);
+}
+.hero-message {
+  font-size: 22px;
+  max-width: 640px;
+  margin: 0 auto var(--space-lg);
+  color: var(--color-text);
+}
+
+
+/* 8. Generic sections --------------------------------------------------- */
+.section {
+  padding: var(--space-xl) 0;
+}
+.section-light {
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.section-intro {
+  font-size: 19px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+/* 404 page */
+.section-error {
+  text-align: center;
+}
+.section-error .hero-message {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* 9. About / meeting info ----------------------------------------------- */
+.meeting-info {
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  background: var(--color-bg);
+  border-left: 6px solid var(--color-accent-secondary);
+  border-radius: var(--radius);
+}
+.meeting-info h3 {
+  margin-top: 0;
+  color: var(--color-accent);
+}
+
+.meeting-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-xs) var(--space-md);
+  margin: 0;
+}
+.meeting-list dt {
+  font-weight: 700;
+  color: var(--color-text);
+}
+.meeting-list dd {
+  margin: 0;
+}
+
+
+/* 10. Events list -------------------------------------------------------- */
+.events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-lg);
+}
+.event {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.event-name {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+}
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+}
+.event-meta-item {
+  display: inline-block;
+}
+.event-description {
+  margin-bottom: var(--space-md);
+}
+
+
+/* 11. Buttons ----------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  min-height: 48px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover,
+.btn:focus-visible {
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn-large {
+  font-size: 22px;
+  padding: 18px 36px;
+  min-height: 56px;
+}
+
+.btn-submit {
+  font-size: 22px;
+  padding: 18px 32px;
+  min-height: 56px;
+  width: 100%;
+  max-width: 420px;
+}
+
+
+/* 12. Registration form ------------------------------------------------- */
+.registration-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.form-row {
+  margin-bottom: var(--space-lg);
+}
+.form-row label {
+  display: block;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="tel"],
+.form-row input[type="number"],
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--color-text);
+  background: #fff;
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  padding: 14px 14px;
+  min-height: 52px;
+}
+
+.form-row textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: 3px solid var(--color-accent-secondary-dark);
+  outline-offset: 1px;
+  border-color: var(--color-accent);
+}
+
+.form-row select {
+  appearance: auto;
+  background: #fff;
+}
+
+/* Invalid state — applied by script.js after a failed submit attempt. */
+.form-row.has-error label {
+  color: var(--color-error);
+}
+.form-row.has-error input,
+.form-row.has-error select,
+.form-row.has-error textarea {
+  border-color: var(--color-error);
+  background-color: var(--color-error-bg);
+}
+
+.field-hint {
+  display: block;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+.field-error {
+  display: block;
+  min-height: 1.4em;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--color-error);
+  margin-top: var(--space-xs);
+}
+.field-error:empty {
+  display: none;
+}
+
+.form-actions {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+
+/* 13. Form success / error panels -------------------------------------- */
+.form-success,
+.form-error {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-lg);
+  border-radius: var(--radius);
+  border-left: 6px solid;
+}
+.form-success {
+  background: var(--color-success-bg);
+  border-color: var(--color-success);
+}
+.form-success h3 {
+  color: var(--color-success);
+  margin-top: 0;
+}
+.form-error {
+  background: var(--color-error-bg);
+  border-color: var(--color-error);
+}
+.form-error h3 {
+  color: var(--color-error);
+  margin-top: 0;
+}
+
+
+/* 14. Photo gallery ----------------------------------------------------- */
+/* The gallery is broken into one mini-gallery per event. Each .gallery-event
+   block has its own subheading and its own grid of tiles. Placeholder tiles
+   (no <img> inside) keep their dashed border and diagonal stripes so the
+   maintainer can see at a glance which slots still need real photos. Real
+   photos use .gallery-item-photo, which drops the placeholder treatment. */
+.gallery-event {
+  margin-top: var(--space-lg);
+}
+.gallery-event:first-of-type {
+  margin-top: var(--space-md);
+}
+.gallery-event-name {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+  font-size: 1.6rem;
+  margin: 0 0 var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--color-accent);
+}
+.gallery {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+}
+.gallery-item {
+  aspect-ratio: 4 / 3;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--color-bg-alt) 0,
+      var(--color-bg-alt) 10px,
+      var(--color-bg) 10px,
+      var(--color-bg) 20px
+    );
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-md);
+  overflow: hidden;
+}
+/* When a real photo is added, the <li> gets the .gallery-item-photo class
+   so the dashed-stripe placeholder treatment is dropped and the image fills
+   the tile cleanly. */
+.gallery-item-photo {
+  background: none;
+  border: 1px solid var(--color-border);
+  padding: 0;
+}
+.gallery-item-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gallery-placeholder-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+
+/* 15. Contact section --------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+}
+.contact-block h3 {
+  color: var(--color-accent);
+  margin-top: 0;
+}
+
+.contact-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-xs) var(--space-md);
+  margin: 0;
+}
+.contact-list dt {
+  font-weight: 700;
+}
+.contact-list dd {
+  margin: 0;
+}
+
+.executives {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.executives li {
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 19px;
+}
+.executives li:last-child { border-bottom: none; }
+.exec-role {
+  color: var(--color-text-muted);
+}
+
+
+/* 16. Footer ------------------------------------------------------------ */
+.site-footer {
+  background: var(--color-accent);
+  color: #fff;
+  padding: var(--space-lg) 0;
+  text-align: center;
+  margin-top: var(--space-xl);
+}
+.site-footer p { margin: 0 0 var(--space-xs); }
+.site-footer a {
+  color: #fff;
+}
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--color-bg);
+}
+
+
+/* 17. Mobile media queries --------------------------------------------- */
+@media (max-width: 720px) {
+  :root {
+    --fs-base: 18px;
+    --fs-h1: 36px;
+    --fs-h2: 28px;
+    --fs-h3: 22px;
+    --header-offset: 200px;
+    --space-xl: 48px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+  .header-phone {
+    align-items: center;
+  }
+  .brand-name { font-size: 28px; }
+
+  .site-nav a {
+    padding: 12px 14px;
+    font-size: 17px;
+  }
+
+  .hero,
+  .section {
+    padding: var(--space-lg) 0;
+  }
+
+  .hero-message { font-size: 19px; }
+
+  .meeting-info,
+  .event,
+  .registration-form,
+  .form-success,
+  .form-error {
+    padding: var(--space-md);
+  }
+
+  .btn-large,
+  .btn-submit {
+    font-size: 19px;
+    padding: 16px 24px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  .site-nav ul {
+    justify-content: stretch;
+  }
+  .site-nav li {
+    flex: 1 1 33%;
+    text-align: center;
+  }
+  .site-nav a {
+    padding: 12px 6px;
+    font-size: 16px;
+  }
+}
+
+/* Honour user "reduced motion" preference: disable smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}
+
+/* Print: a clean printable page (mostly for the events list) */
+@media print {
+  .site-header,
+  .site-nav,
+  .hero,
+  #register,
+  #gallery,
+  .site-footer { display: none; }
+  body { background: #fff; color: #000; }
+}
