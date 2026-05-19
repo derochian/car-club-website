@@ -21,9 +21,9 @@ Car Club Website/
 
 ## How publishing works
 
-The website lives in this folder on Lucas's laptop. When changes are made here, they are pushed to GitHub and GitHub Pages re-publishes the live site within 1–3 minutes — no upload step, no Netlify dashboard.
+When changes are made in this folder, they are pushed to GitHub and GitHub Pages re-publishes the live site within 1–3 minutes — no upload step, no Netlify dashboard.
 
-**Lucas publishes changes** by running three commands from inside the `Car Club Website` folder:
+To publish changes, run three commands from inside the `Car Club Website` folder:
 
 ```
 git add .
@@ -31,12 +31,10 @@ git commit -m "Short description of the change"
 git push
 ```
 
-**Richard, if you're editing on your own machine:** GitHub Pages doesn't allow drag-and-drop publishing. There are two options for handing changes off so they reach the live site:
+If you're editing on your own machine, GitHub Pages doesn't allow drag-and-drop publishing. There are two options for getting changes to the live site:
 
-1. **Edit the file and send it to Lucas** — easiest. Open the file in FrontPage 2003, make your changes, save it, and email the updated file to Lucas. Lucas pushes it.
-2. **Set up GitHub Desktop on your computer** — a one-time install lets you click "Commit" and "Push" without the command line. We can walk through this together if you'd like to publish directly.
-
-The May 21 meeting is a good time to decide which approach works best.
+1. **Edit the file and send it over** — open the file in FrontPage 2003, make your changes, save it, and email the updated file to whoever runs the publish step.
+2. **Set up GitHub Desktop on your computer** — a one-time install that lets you click "Commit" and "Push" without the command line, so you can publish directly.
 
 ---
 
