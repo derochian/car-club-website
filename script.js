@@ -1,15 +1,17 @@
 /* ==========================================================================
-   Country Car Show 2026 — script.js
+   Country Car Show — script.js
    --------------------------------------------------------------------------
    This file does only the small things plain HTML cannot:
-     1. Updates the copyright year in the footer.
-     2. Validates the pre-registration form on submit (showing clear error
-        messages above each invalid field).
-     3. Shows a placeholder confirmation panel after a successful local
-        validation, because the form's real backend is not wired up yet.
+     1. Marks the document as JS-enabled, then wires up the collapsible
+        navigation (the hamburger menu) for small screens. With JS off, the
+        nav stays visible — progressive enhancement, nothing breaks.
+     2. Updates the copyright year in the footer.
+     3. Validates the pre-registration form on submit (showing clear error
+        messages above each invalid field), then shows a placeholder
+        confirmation panel because the real backend is not wired up yet.
         When a real backend is added (Formspree / Netlify / Google Forms —
-        see index.html for setup notes), replace the placeholder branch with
-        the appropriate submit logic.
+        see event-2026.html for setup notes), replace the placeholder branch
+        with the appropriate submit logic.
 
    It is deliberately small. There are no third-party libraries.
    ========================================================================== */
@@ -17,13 +19,64 @@
 (function () {
   "use strict";
 
-  // ----- 1. Copyright year ------------------------------------------------
+  // ----- 1. Collapsible navigation (hamburger) ---------------------------
+  // Add a marker class so the stylesheet can switch from "always visible nav"
+  // (no-JS fallback) to "collapsed behind a button on small screens".
+  document.body.classList.add("js-nav");
+
+  var header = document.querySelector(".site-header");
+  var navToggle = document.querySelector(".nav-toggle");
+  var siteNav = document.getElementById("primary-nav");
+
+  function closeNav() {
+    if (!header || !navToggle) return;
+    header.classList.remove("nav-open");
+    navToggle.setAttribute("aria-expanded", "false");
+  }
+
+  function openNav() {
+    if (!header || !navToggle) return;
+    header.classList.add("nav-open");
+    navToggle.setAttribute("aria-expanded", "true");
+  }
+
+  if (header && navToggle && siteNav) {
+    // Start collapsed on small screens.
+    navToggle.setAttribute("aria-expanded", "false");
+
+    navToggle.addEventListener("click", function () {
+      var isOpen = header.classList.contains("nav-open");
+      if (isOpen) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+
+    // Close when a nav link is clicked (so the menu doesn't stay open after
+    // navigating to a section/page).
+    siteNav.addEventListener("click", function (e) {
+      if (e.target && e.target.closest("a")) {
+        closeNav();
+      }
+    });
+
+    // Close on Escape, and return focus to the toggle for keyboard users.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && header.classList.contains("nav-open")) {
+        closeNav();
+        navToggle.focus();
+      }
+    });
+  }
+
+  // ----- 2. Copyright year ------------------------------------------------
   var yearEl = document.getElementById("current-year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  // ----- 2. Form validation ----------------------------------------------
+  // ----- 3. Form validation ----------------------------------------------
   var form = document.getElementById("registration-form");
   var placeholderPanel = document.getElementById("form-placeholder");
   var errorPanel = document.getElementById("form-error");

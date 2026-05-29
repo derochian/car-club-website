@@ -1,38 +1,52 @@
 /* ==========================================================================
-   Country Car Show 2026 — stylesheet
+   Country Car Show — stylesheet (multi-page, mobile-first)
    --------------------------------------------------------------------------
+   AUTHORING APPROACH: mobile-first.
+     - The "base" rules (no @media query) describe the PHONE layout.
+     - Larger screens are enhanced UPWARD with three min-width breakpoints:
+         tablet   ≥ 48em  (~768px)
+         desktop  ≥ 64em  (~1024px)   ← full horizontal nav appears here
+         large    ≥ 90em  (~1440px)
+     - The desktop design is deliberate, NOT a stretched-up phone layout.
+
    Organized in this order:
      1.  Custom properties (colors, fonts, spacing)
      2.  Reset & base
      3.  Typography & links
      4.  Layout containers
      5.  Skip link & accessibility helpers
-     6.  Header & navigation
-     7.  Hero
-     8.  Generic sections
-     9.  About / meeting info
-    10.  Events list
-    11.  Buttons
-    12.  Registration form
-    13.  Form success / error panels
-    14.  Photo gallery
-    15.  Contact section
-    16.  Footer
-    17.  Mobile media queries (at the bottom)
+     6.  Header, brand, phone
+     7.  Navigation + hamburger toggle
+     8.  Hero
+     9.  Generic sections
+    10.  Cards / about / meeting info
+    11.  Events list
+    12.  Buttons
+    13.  Registration form
+    14.  Form success / error panels
+    15.  Photo gallery (responsive image grid)
+    16.  Sponsors
+    17.  Contact section
+    18.  Footer
+    19.  TABLET breakpoint   (min-width: 48em)
+    20.  DESKTOP breakpoint  (min-width: 64em)
+    21.  LARGE breakpoint    (min-width: 90em)
+    22.  Reduced motion + print
 
-   Older audience considerations:
-     - Body text 18–20 px
+   Older audience considerations (do NOT regress these):
+     - Body text 18–20 px (fluid via clamp, never below 18px)
      - Line-height 1.6
      - High-contrast text on cream/white backgrounds (no gray on white)
-     - Visible focus rings
+     - Visible focus rings on every interactive element
      - In-content links underlined
-     - Buttons ≥ 48 px tall, form submit ≥ 56 px
+     - Buttons ≥ 48 px tall, form submit ≥ 56 px, tap targets ≥ 44 px
+     - Form inputs ≥ 16px font so iOS Safari does not zoom on focus (we use 19px)
    ========================================================================== */
 
 
 /* 1. Custom properties --------------------------------------------------- */
 :root {
-  /* Colors (pulled from the 2026 Country Car Show poster: navy / gold / white,
+  /* Colors (pulled from the Country Car Show poster: navy / gold / white,
      with a red accent reserved for the primary call-to-action button.) */
   --color-bg:               #F8F6EE;   /* faint cream — gives subtle rhythm between alternating sections */
   --color-bg-alt:           #FFFFFF;
@@ -57,11 +71,13 @@
   --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-body:    "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  --fs-base:   20px;     /* body */
-  --fs-small:  17px;     /* footnotes / hints */
-  --fs-h1:     46px;
-  --fs-h2:     34px;
-  --fs-h3:     26px;
+  /* Fluid type — clamp(min, preferred, max). Mins keep body ≥ 18px for the
+     older audience; maxes match the previous desktop sizes. */
+  --fs-base:   clamp(18px, 1rem + 0.25vw, 20px);   /* body */
+  --fs-small:  clamp(16px, 0.9rem + 0.2vw, 17px);  /* footnotes / hints (≥16px so iOS won't zoom) */
+  --fs-h1:     clamp(34px, 5vw + 1rem, 46px);
+  --fs-h2:     clamp(26px, 3vw + 1rem, 34px);
+  --fs-h3:     clamp(22px, 1.5vw + 1rem, 26px);
 
   /* Spacing */
   --space-xxs: 4px;
@@ -69,16 +85,17 @@
   --space-sm:  16px;
   --space-md:  24px;
   --space-lg:  40px;
-  --space-xl:  64px;
+  --space-xl:  48px;    /* base (mobile) — grows to 64px at the desktop breakpoint */
   --space-xxl: 96px;
 
   /* Layout */
-  --width-content: 720px;
-  --width-wide:    1080px;
+  --width-content: 720px;    /* prose: keeps ~60–75 characters per line */
+  --width-wide:    1080px;   /* grids / wide content */
   --radius:        4px;
 
-  /* Used by anchor scrolling so headings don't hide under the sticky header. */
-  --header-offset: 170px;
+  /* Used by anchor scrolling so headings don't hide under the sticky header.
+     Mobile (stacked header) is taller; the desktop breakpoint shrinks it. */
+  --header-offset: 132px;
 }
 
 
@@ -103,6 +120,8 @@ body {
   font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  /* Belt-and-suspenders against horizontal scroll at narrow widths. */
+  overflow-x: hidden;
 }
 
 img,
@@ -118,6 +137,8 @@ h1, h2, h3, h4 {
   color: var(--color-accent);
   line-height: 1.25;
   margin: 0 0 var(--space-md);
+  /* Long single words (e.g. emails, URLs) shouldn't force horizontal scroll. */
+  overflow-wrap: break-word;
 }
 
 h1 { font-size: var(--fs-h1); letter-spacing: -0.01em; }
@@ -139,6 +160,7 @@ a {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
+  overflow-wrap: break-word;
 }
 
 a:hover,
@@ -183,6 +205,19 @@ a:focus-visible {
   top: var(--space-md);
 }
 
+/* Visually hidden but available to screen readers. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .required {
   color: var(--color-accent);
   font-weight: 700;
@@ -206,7 +241,10 @@ a:focus-visible {
 }
 
 
-/* 6. Header & navigation ------------------------------------------------- */
+/* 6. Header, brand, phone ------------------------------------------------ */
+/* The header is sticky on every page. On mobile it stacks: a top bar (brand +
+   hamburger), then the phone link, then the collapsible nav. The desktop
+   breakpoint re-lays these into a single horizontal row + full nav bar. */
 .site-header {
   position: sticky;
   top: 0;
@@ -214,6 +252,9 @@ a:focus-visible {
   background: var(--color-bg-alt);
   border-bottom: 4px solid var(--color-accent);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  /* Respect the iOS notch / rounded corners on the sticky bar. */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .header-top {
@@ -223,8 +264,7 @@ a:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--space-md);
-  flex-wrap: wrap;
+  gap: var(--space-sm);
 }
 
 .brand-link {
@@ -238,14 +278,14 @@ a:focus-visible {
 .brand-name {
   display: block;
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   font-weight: 700;
   color: var(--color-accent);
   line-height: 1.1;
 }
 .brand-tagline {
   display: block;
-  font-size: 18px;
+  font-size: clamp(15px, 3vw, 18px);
   color: var(--color-text-muted);
   margin-top: 2px;
 }
@@ -253,7 +293,7 @@ a:focus-visible {
 .header-phone {
   display: inline-flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   text-decoration: none;
   color: var(--color-text);
   font-weight: 700;
@@ -283,18 +323,87 @@ a:focus-visible {
   font-family: var(--font-body);
 }
 
+/* On mobile the phone link is a full-width band beneath the top bar so the
+   number stays large and tappable. The desktop breakpoint moves it inline. */
+.header-phone-wrap {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-md) var(--space-sm);
+  display: flex;
+  justify-content: center;
+}
+.header-phone-wrap .header-phone {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* On mobile, ONLY the full-width phone band (.header-phone-wrap) is shown.
+   The inline phone inside .header-top is desktop-only — it is re-shown at the
+   desktop breakpoint (section 20). Hiding it here keeps the top row
+   (brand + hamburger) from overflowing narrow phones down to 320px. */
+.header-top .header-phone { display: none; }
+
+
+/* 7. Navigation + hamburger toggle -------------------------------------- */
+/* PROGRESSIVE ENHANCEMENT: with no JS the nav is simply visible (stacked).
+   script.js adds the .js-nav class to <body>, which collapses the nav behind
+   the hamburger on small screens. So if JS is off, everything still works. */
+
+/* The hamburger button is hidden until JS turns it on, and only shows below
+   the desktop breakpoint. */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  min-height: 48px;
+  cursor: pointer;
+}
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+}
+.nav-toggle-bars {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  transition: background-color 0.15s ease;
+}
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+}
+.nav-toggle-bars::before { top: -7px; }
+.nav-toggle-bars::after  { top: 7px; }
+
+/* When JS is active, reveal the hamburger on small screens. */
+.js-nav .nav-toggle { display: inline-flex; }
+
 .site-nav {
   background: var(--color-accent);
 }
 .site-nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: var(--width-wide);
   margin: 0 auto;
+  padding: 0;
+  max-width: var(--width-wide);
+  display: flex;
+  flex-direction: column;   /* mobile: stacked nav */
 }
 .site-nav li { margin: 0; }
 .site-nav a {
@@ -304,22 +413,53 @@ a:focus-visible {
   text-decoration: none;
   font-size: 19px;
   font-weight: 600;
-  border-bottom: 4px solid transparent;
+  border-bottom: 1px solid var(--color-accent-light);
   min-height: 48px;
 }
+.site-nav li:last-child a { border-bottom: none; }
 .site-nav a:hover,
 .site-nav a:focus-visible {
   background: var(--color-accent-dark);
   color: #fff;
-  border-bottom-color: var(--color-accent-secondary);
+}
+
+/* Active page marker (set with aria-current="page" on the link). */
+.site-nav a[aria-current="page"] {
+  background: var(--color-accent-dark);
+  border-left: 6px solid var(--color-accent-secondary);
+  padding-left: 16px;
+}
+
+/* "Pre-Register" emphasis nav item — gold pill so it stands out. */
+.site-nav a.nav-cta {
+  color: var(--color-accent);
+  background: var(--color-accent-secondary);
+  font-weight: 700;
+}
+.site-nav a.nav-cta:hover,
+.site-nav a.nav-cta:focus-visible {
+  background: var(--color-accent-secondary-dark);
+  color: var(--color-accent-dark);
+}
+.site-nav a.nav-cta[aria-current="page"] {
+  border-left-color: var(--color-accent);
+}
+
+/* COLLAPSED state (JS on, small screens, not expanded): hide the nav list.
+   The [hidden]-friendly approach: we toggle .nav-open on the header. */
+.js-nav .site-nav {
+  display: none;
+}
+.js-nav .site-header.nav-open .site-nav {
+  display: block;
 }
 
 
-/* 7. Hero ---------------------------------------------------------------- */
+/* 8. Hero ---------------------------------------------------------------- */
 .hero {
   background: var(--color-bg-alt);
   border-bottom: 4px solid var(--color-accent-secondary);
-  padding: var(--space-xl) 0 var(--space-xl);
+  padding: var(--space-xl) 0;
   text-align: center;
 }
 .hero h1 {
@@ -329,7 +469,7 @@ a:focus-visible {
 .hero-eyebrow {
   display: inline-block;
   font-family: var(--font-heading);
-  font-size: 22px;
+  font-size: clamp(18px, 4vw, 22px);
   font-weight: 700;
   color: var(--color-accent);
   background: var(--color-accent-secondary);
@@ -346,20 +486,20 @@ a:focus-visible {
 }
 .hero-date {
   font-family: var(--font-heading);
-  font-size: 26px;
+  font-size: clamp(20px, 4vw, 26px);
   font-weight: 700;
   color: var(--color-accent);
   margin: 0 0 var(--space-md);
 }
 .hero-message {
-  font-size: 22px;
+  font-size: clamp(19px, 2vw, 22px);
   max-width: 640px;
   margin: 0 auto var(--space-lg);
   color: var(--color-text);
 }
 
 
-/* 8. Generic sections --------------------------------------------------- */
+/* 9. Generic sections --------------------------------------------------- */
 .section {
   padding: var(--space-xl) 0;
 }
@@ -369,25 +509,48 @@ a:focus-visible {
   border-bottom: 1px solid var(--color-border);
 }
 .section-intro {
-  font-size: 19px;
+  font-size: clamp(18px, 1.5vw, 19px);
   color: var(--color-text-muted);
   margin-bottom: var(--space-lg);
 }
 
-/* 404 page */
-.section-error {
+/* Centered short pages (404, thank-you). */
+.section-error,
+.section-centered {
   text-align: center;
 }
-.section-error .hero-message {
+.section-error .hero-message,
+.section-centered .hero-message {
   margin-left: auto;
   margin-right: auto;
 }
 
 
-/* 9. About / meeting info ----------------------------------------------- */
+/* 10. Cards / about / meeting info -------------------------------------- */
+/* Generic reusable card. Use for any boxed content block. */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Feature grid — a two-up layout for text/detail pages (event, winners,
+   youth) so wide screens are used deliberately instead of stranding one
+   narrow column in the middle of a 1440px viewport. Single column on
+   phones + tablets; two columns from the desktop breakpoint up, where each
+   column still keeps a readable measure. Pair with .container.container-wide.
+   Use .feature-grid--aside when one side is a narrower complementary panel. */
+.feature-grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+.feature-grid > * { min-width: 0; }   /* let grid children shrink + wrap */
+
 .meeting-info {
   margin-top: var(--space-lg);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   background: var(--color-bg);
   border-left: 6px solid var(--color-accent-secondary);
   border-radius: var(--radius);
@@ -399,8 +562,8 @@ a:focus-visible {
 
 .meeting-list {
   display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: var(--space-xs) var(--space-md);
+  grid-template-columns: 1fr;   /* mobile: stacked term/definition */
+  gap: var(--space-xxs) var(--space-md);
   margin: 0;
 }
 .meeting-list dt {
@@ -408,11 +571,11 @@ a:focus-visible {
   color: var(--color-text);
 }
 .meeting-list dd {
-  margin: 0;
+  margin: 0 0 var(--space-xs);
 }
 
 
-/* 10. Events list -------------------------------------------------------- */
+/* 11. Events list -------------------------------------------------------- */
 .events {
   list-style: none;
   padding: 0;
@@ -425,7 +588,7 @@ a:focus-visible {
   border: 1px solid var(--color-border);
   border-left: 6px solid var(--color-accent);
   border-radius: var(--radius);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 .event-name {
@@ -449,7 +612,7 @@ a:focus-visible {
 }
 
 
-/* 11. Buttons ----------------------------------------------------------- */
+/* 12. Buttons ----------------------------------------------------------- */
 .btn {
   display: inline-block;
   font-family: var(--font-body);
@@ -508,11 +671,11 @@ a:focus-visible {
 }
 
 
-/* 12. Registration form ------------------------------------------------- */
+/* 13. Registration form ------------------------------------------------- */
 .registration-form {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   border-radius: var(--radius);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
@@ -536,7 +699,7 @@ a:focus-visible {
 .form-row textarea {
   width: 100%;
   font-family: var(--font-body);
-  font-size: 19px;
+  font-size: 19px;        /* ≥16px so iOS Safari does not zoom on focus */
   line-height: 1.4;
   color: var(--color-text);
   background: #fff;
@@ -599,11 +762,11 @@ a:focus-visible {
 }
 
 
-/* 13. Form success / error panels -------------------------------------- */
+/* 14. Form success / error panels -------------------------------------- */
 .form-success,
 .form-error {
   margin-bottom: var(--space-lg);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   border-radius: var(--radius);
   border-left: 6px solid;
 }
@@ -625,12 +788,12 @@ a:focus-visible {
 }
 
 
-/* 14. Photo gallery ----------------------------------------------------- */
-/* The gallery is broken into one mini-gallery per event. Each .gallery-event
-   block has its own subheading and its own grid of tiles. Placeholder tiles
-   (no <img> inside) keep their dashed border and diagonal stripes so the
-   maintainer can see at a glance which slots still need real photos. Real
-   photos use .gallery-item-photo, which drops the placeholder treatment. */
+/* 15. Photo gallery (responsive image grid) ----------------------------- */
+/* The gallery is a reusable responsive image grid: single column on phones,
+   auto-filling multi-column from tablet up. Each .gallery-event block can
+   carry its own subheading. Placeholder tiles (no <img> inside) keep their
+   dashed border + diagonal stripes so the maintainer can see which slots
+   still need real photos. Real photos use .gallery-item-photo. */
 .gallery-event {
   margin-top: var(--space-lg);
 }
@@ -650,7 +813,7 @@ a:focus-visible {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 1fr;   /* mobile: single column */
   gap: var(--space-md);
 }
 .gallery-item {
@@ -695,13 +858,13 @@ a:focus-visible {
 }
 
 
-/* 14b. Sponsors --------------------------------------------------------- */
+/* 16. Sponsors ---------------------------------------------------------- */
 .sponsors {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 1fr;   /* mobile: single column */
   gap: var(--space-md);
 }
 .sponsor {
@@ -718,11 +881,11 @@ a:focus-visible {
 }
 
 
-/* 15. Contact section --------------------------------------------------- */
+/* 17. Contact section --------------------------------------------------- */
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-xl);
+  grid-template-columns: 1fr;   /* mobile: single column */
+  gap: var(--space-lg);
 }
 .contact-block h3 {
   color: var(--color-accent);
@@ -731,15 +894,17 @@ a:focus-visible {
 
 .contact-list {
   display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: var(--space-xs) var(--space-md);
+  grid-template-columns: 1fr;   /* mobile: stacked label / value (matches .meeting-list) */
+  gap: var(--space-xxs) var(--space-md);
   margin: 0;
 }
 .contact-list dt {
   font-weight: 700;
 }
 .contact-list dd {
-  margin: 0;
+  margin: 0 0 var(--space-xs);
+  /* Long emails should wrap rather than push the page wide. */
+  overflow-wrap: anywhere;
 }
 
 .executives {
@@ -758,13 +923,15 @@ a:focus-visible {
 }
 
 
-/* 16. Footer ------------------------------------------------------------ */
+/* 18. Footer ------------------------------------------------------------ */
 .site-footer {
   background: var(--color-accent);
   color: #fff;
   padding: var(--space-lg) 0;
   text-align: center;
   margin-top: var(--space-xl);
+  /* Respect the iOS home-bar / safe area at the bottom of the page. */
+  padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
 }
 .site-footer p { margin: 0 0 var(--space-xs); }
 .site-footer a {
@@ -776,77 +943,140 @@ a:focus-visible {
 }
 
 
-/* 17. Mobile media queries --------------------------------------------- */
-@media (max-width: 720px) {
-  :root {
-    --fs-base: 18px;
-    --fs-h1: 36px;
-    --fs-h2: 28px;
-    --fs-h3: 22px;
-    --header-offset: 200px;
-    --space-xl: 48px;
+/* ======================================================================== */
+/* 19. TABLET breakpoint (min-width: 48em ≈ 768px) ------------------------ */
+/*     Two-up grids and side-by-side definition lists start here so the      */
+/*     ~768px width is handled deliberately, not just the phone/desktop      */
+/*     extremes.                                                             */
+/* ======================================================================== */
+@media (min-width: 48em) {
+  .meeting-info {
+    padding: var(--space-lg);
   }
 
-  .header-top {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-sm);
-    text-align: center;
+  /* Definition lists become two-column (term | value). */
+  .meeting-list,
+  .contact-list {
+    grid-template-columns: max-content 1fr;
   }
-  .header-phone {
-    align-items: center;
-  }
-  .brand-name { font-size: 28px; }
-
-  .site-nav a {
-    padding: 12px 14px;
-    font-size: 17px;
+  .meeting-list dd,
+  .contact-list dd {
+    margin-bottom: 0;
   }
 
-  .hero,
-  .section {
-    padding: var(--space-lg) 0;
+  /* Image grid + sponsor grid go multi-column, auto-filling by min tile size. */
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .sponsors {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
-  .hero-message { font-size: 19px; }
-
-  .meeting-info,
+  /* Cards / forms can breathe a little more. */
+  .card,
   .event,
   .registration-form,
   .form-success,
   .form-error {
-    padding: var(--space-md);
+    padding: var(--space-lg);
   }
 
-  .btn-large,
-  .btn-submit {
-    font-size: 19px;
-    padding: 16px 24px;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr 1fr;
+  /* Contact blocks side-by-side once there's room. */
+  .contact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
   }
 }
 
-@media (max-width: 420px) {
-  .gallery {
-    grid-template-columns: 1fr;
+
+/* ======================================================================== */
+/* 20. DESKTOP breakpoint (min-width: 64em ≈ 1024px) --------------------- */
+/*     Full horizontal nav (NO hamburger). Header collapses to one row.     */
+/*     Sections get more vertical air. This is the deliberate desktop        */
+/*     design, not a stretched phone layout.                                 */
+/* ======================================================================== */
+@media (min-width: 64em) {
+  :root {
+    --space-xl: 64px;       /* roomier section padding on desktop */
+    --header-offset: 150px; /* sticky header is shorter on desktop */
+  }
+
+  /* The hamburger is never shown at desktop width, even with JS on. */
+  .js-nav .nav-toggle { display: none; }
+
+  /* The phone link sits inline in the top bar; hide the mobile phone band. */
+  .header-phone-wrap { display: none; }
+  .header-top .header-phone {
+    display: inline-flex;
+    align-items: flex-end;
+  }
+
+  /* Nav is always visible and horizontal at desktop width, regardless of the
+     collapsed/open state used on smaller screens. */
+  .js-nav .site-nav,
+  .js-nav .site-header.nav-open .site-nav {
+    display: block;
   }
   .site-nav ul {
-    justify-content: stretch;
-  }
-  .site-nav li {
-    flex: 1 1 33%;
-    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .site-nav a {
-    padding: 12px 6px;
-    font-size: 16px;
+    border-bottom: 4px solid transparent;
+  }
+  .site-nav li:last-child a { border-bottom: 4px solid transparent; }
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    border-bottom-color: var(--color-accent-secondary);
+  }
+  /* Active marker reverts to an underline tab (not the left bar) on desktop. */
+  .site-nav a[aria-current="page"] {
+    border-left: 4px solid transparent;
+    padding-left: 22px;
+    border-bottom-color: var(--color-accent-secondary);
+  }
+  .site-nav a.nav-cta[aria-current="page"] {
+    border-bottom-color: var(--color-accent-dark);
+  }
+
+  /* Two-up content layout kicks in on desktop. */
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  /* Variant: a wider main column + narrower complementary panel. */
+  .feature-grid--aside {
+    grid-template-columns: 1.5fr 1fr;
   }
 }
 
-/* Honour user "reduced motion" preference: disable smooth scrolling */
+
+/* ======================================================================== */
+/* 21. LARGE breakpoint (min-width: 90em ≈ 1440px) ----------------------- */
+/*     Avoid a stranded narrow column / whitespace acres in big viewports:   */
+/*     widen the prose measure slightly and give grids a higher tile floor.  */
+/* ======================================================================== */
+@media (min-width: 90em) {
+  :root {
+    --width-content: 760px;   /* still ~70–75 chars; not a thin ribbon */
+    --width-wide:    1200px;
+  }
+
+  .hero {
+    padding: var(--space-xxl) 0;
+  }
+
+  /* Larger tiles so a 1440px+ grid doesn't feel sparse or over-fragmented. */
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+
+/* 22. Reduced motion + print -------------------------------------------- */
+/* Honour user "reduced motion" preference: disable smooth scrolling. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * {
@@ -855,10 +1085,11 @@ a:focus-visible {
   }
 }
 
-/* Print: a clean printable page (mostly for the events list) */
+/* Print: a clean printable page. */
 @media print {
   .site-header,
   .site-nav,
+  .nav-toggle,
   .hero,
   #register,
   #gallery,

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Country Car Show 2026 — Sunday April 26, hosted by the Central Fraser Valley Chapter of the Vintage Car Club of Canada. Aldergrove Community Secondary School. Vintage cars, raffle, trophies, food and entertainment.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="The Country Car Show is a one-day vintage and classic car show held each spring in Aldergrove, BC. Sunday April 26, 2026 — pre-register your vehicle, free admission for spectators.">
   <meta name="theme-color" content="#1A2A5C">
 
   <!-- Open Graph (for link previews when the site is shared) -->
@@ -12,7 +12,7 @@
   <meta property="og:description" content="12th Annual Country Car Show — hosted by the Central Fraser Valley Chapter of the VCCC.">
   <meta property="og:locale" content="en_CA">
 
-  <title>Country Car Show 2026 — Sunday April 26, Aldergrove</title>
+  <title>Country Car Show 2026 — Sunday April 26, Aldergrove, BC</title>
 
   <!-- Inline-SVG favicon: a simple steering wheel in the show's navy accent.
        No separate file needed. To change it, edit the SVG below. -->
@@ -30,31 +30,31 @@
 
 <!--
 ================================================================================
-  COUNTRY CAR SHOW 2026 — content map
+  COUNTRY CAR SHOW — HOME PAGE
 ================================================================================
 
-  This is the single-event site for the Country Car Show, hosted annually by
-  the Central Fraser Valley Chapter of the Vintage Car Club of Canada (VCCC).
-  Most content is filled in from the 2026 event poster. Updating it for next
-  year? In FrontPage 2003 or any plain editor, use Find & Replace.
+  This is the welcoming landing page for the Country Car Show, hosted annually
+  by the Central Fraser Valley Chapter of the Vintage Car Club of Canada (VCCC).
+  Its job is to greet visitors and point them to the current show. The full
+  event details + the online pre-registration form live on event-2026.html.
 
-  ── COMMON ANNUAL UPDATES ────────────────────────────────────────────────
+  Editing this site? It is plain HTML/CSS/JS — no build step. In FrontPage 2003
+  or any plain editor, use Find & Replace for the common annual updates below.
+
+  ── COMMON ANNUAL UPDATES (across all pages) ──────────────────────────────
     "12th Annual"                  → bump the number
     "Sunday, April 26, 2026"       → next year's date
     "April 26"                     → short date in nav/social tags
-    "$20 online / $25 at gate"     → ticket prices
-    "Aldergrove Community Secondary School"  → only if the venue changes
     "John Lundgren" / contact info → if the chairman changes
 
-  ── PHOTO GALLERY ─────────────────────────────────────────────────────────
-    Twelve placeholder tiles labelled [PHOTO_1] through [PHOTO_12].
-    Replace each <li class="gallery-item"> with an <img> when you have a
-    real photo — see README.md.
-
-  ── PRE-REGISTRATION FORM ─────────────────────────────────────────────────
-    The form on this page does NOT yet submit anywhere — see the TODO
-    comment directly above the <form> tag. For now, submissions show an
-    inline message asking the visitor to email John Lundgren directly.
+  ── PAGE MAP ──────────────────────────────────────────────────────────────
+    index.html          → this home page
+    event-2026.html     → current show details + online pre-registration
+    gallery.html        → photos from past shows
+    sponsors.html       → our sponsors
+    winners.html        → past trophy winners
+    youth-in-trades.html→ the ACSS Automotive Program the show supports
+    print-qr.html       → a printable QR poster (not in the nav)
 
 ================================================================================
 -->
@@ -62,34 +62,56 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ============================================================== -->
-<!-- HEADER — sticky, contains brand, phone, and primary navigation -->
+<!-- HEADER — sticky: brand + phone + primary navigation            -->
+<!-- The .nav-toggle hamburger is hidden on desktop and shown below  -->
+<!-- the desktop breakpoint (script.js wires it up). With JS off the -->
+<!-- nav stays visible, so nothing breaks.                           -->
 <!-- ============================================================== -->
 <header class="site-header" role="banner">
   <div class="header-top">
     <div class="brand">
-      <a href="#top" class="brand-link">
+      <a href="index.html" class="brand-link">
         <span class="brand-name">Country Car Show</span>
         <span class="brand-tagline">12th Annual — Sunday, April 26, 2026 — Aldergrove, BC</span>
       </a>
     </div>
+
+    <!-- Phone link: shown inline here on desktop (see also the mobile band below). -->
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
+    </a>
+
+    <!-- Hamburger: only visible below the desktop breakpoint (CSS-controlled). -->
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile-only phone band: the desktop breakpoint hides this and the inline
+       phone link above takes over. Keeps the number big and tappable on phones. -->
+  <div class="header-phone-wrap">
     <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
       <span class="header-phone-label">Questions? Call John:</span>
       <span class="header-phone-number">604-309-8368</span>
     </a>
   </div>
+
   <nav class="site-nav" aria-label="Primary">
-    <ul>
-      <li><a href="#details">Event Details</a></li>
-      <li><a href="#register"><strong>Pre-Register</strong></a></li>
-      <li><a href="#gallery">Photos</a></li>
-      <li><a href="#sponsors">Sponsors</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <ul id="primary-nav">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="event-2026.html">2026 Show</a></li>
+      <li><a href="gallery.html">Photos</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="winners.html">Winners</a></li>
+      <li><a href="youth-in-trades.html">Youth in Trades</a></li>
+      <li><a href="event-2026.html#register" class="nav-cta">Pre-Register</a></li>
     </ul>
   </nav>
 </header>
 
 <main id="main">
-  <a id="top"></a>
 
   <!-- ============================================================ -->
   <!-- HERO — show headline + primary call-to-action                -->
@@ -100,260 +122,141 @@
       <h1 id="hero-heading">Country Car Show 2026</h1>
       <p class="hero-date">Sunday, April 26, 2026 &middot; 9 AM &ndash; 3 PM</p>
       <p class="hero-message">
-        Hosted by the Central Fraser Valley Chapter of the
-        Vintage Car Club of Canada at the Aldergrove Community Secondary School.
-        Free admission for spectators &mdash; bring the family.
+        Hosted by the Central Fraser Valley Chapter of the Vintage Car Club of
+        Canada at the Aldergrove Community Secondary School. Vintage and classic
+        cars from across the Fraser Valley &mdash; free admission for spectators,
+        so bring the family.
       </p>
       <p>
-        <a class="btn btn-primary btn-large" href="#register">Pre-Register Your Vehicle</a>
+        <!-- The ONE primary (red) action on this page. -->
+        <a class="btn btn-primary btn-large" href="event-2026.html#register">Pre-Register Your Vehicle</a>
+      </p>
+      <p>
+        <a class="btn btn-secondary" href="event-2026.html">See full event details</a>
       </p>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- EVENT DETAILS — date, times, location, ticket prices, extras -->
+  <!-- ABOUT THE SHOW — a few highlights of the day                 -->
   <!-- ============================================================ -->
-  <section id="details" class="section section-light">
-    <div class="container">
-      <h2>Event Details</h2>
-      <p>
+  <section class="section section-light" aria-labelledby="about-heading">
+    <div class="container container-wide">
+      <h2 id="about-heading">About the Show</h2>
+      <p class="section-intro">
         The Country Car Show is a one-day vintage and classic car show held each
-        spring in Aldergrove, British Columbia. Partial proceeds support the
-        ACSS Automotive Program &mdash; helping local youth enter the automotive
-        profession.
+        spring in Aldergrove, BC. Here is a taste of what the day has in store.
       </p>
 
-      <div class="meeting-info" role="region" aria-labelledby="details-heading">
-        <h3 id="details-heading">When &amp; Where</h3>
-        <dl class="meeting-list">
-          <dt>Date</dt>
-          <dd>Sunday, April 26, 2026</dd>
-          <dt>Registration</dt>
-          <dd>7:00 AM &ndash; 9:00 AM</dd>
-          <dt>Show Hours</dt>
-          <dd>9:00 AM &ndash; 3:00 PM</dd>
-          <dt>Trophies Awarded</dt>
-          <dd>2:30 PM</dd>
-          <dt>Location</dt>
-          <dd>
-            Aldergrove Community Secondary School<br>
-            26850 29th Avenue, Aldergrove, BC<br>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Aldergrove+Community+Secondary+School+26850+29th+Avenue+Aldergrove+BC" target="_blank" rel="noopener external">Get directions on Google Maps &rarr;</a>
-          </dd>
-          <dt>Entry Fee</dt>
-          <dd><strong>$20 online</strong> (pre-register below, opens April 1)<br><strong>$25 at the gate</strong></dd>
-          <dt>Spectators</dt>
-          <dd>Free admission</dd>
-        </dl>
-      </div>
-
-      <h3>What to Expect</h3>
-      <ul>
-        <li>Vintage and classic cars from across the Fraser Valley</li>
-        <li>Trophies awarded at 2:30 PM</li>
-        <li>Raffle and 50/50 draw</li>
-        <li>Dash plaques for the first registered entries</li>
-        <li>Food and entertainment on site</li>
-        <li>Family-friendly, all ages welcome</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- PRE-REGISTER FORM — vehicle pre-registration                 -->
-  <!--                                                              -->
-  <!-- TODO: WIRE UP A REAL BACKEND BEFORE LAUNCH.                  -->
-  <!-- Right now this form does NOT send submissions anywhere.      -->
-  <!-- On submit, script.js intercepts and shows an inline message  -->
-  <!-- asking the visitor to email John Lundgren directly. Three    -->
-  <!-- options to wire real submission, easiest first:              -->
-  <!--                                                              -->
-  <!--   1. Formspree (https://formspree.io)                        -->
-  <!--      Sign up, get a form ID, then change <form action>       -->
-  <!--      to "https://formspree.io/f/YOUR_FORM_ID" and method     -->
-  <!--      "POST". Free plan: 50 submissions/month.                -->
-  <!--                                                              -->
-  <!--   2. Netlify Forms (requires moving hosting to Netlify)      -->
-  <!--      Re-add data-netlify="true" and the bot-field honeypot,  -->
-  <!--      and deploy to Netlify instead of GitHub Pages.          -->
-  <!--                                                              -->
-  <!--   3. Google Forms                                            -->
-  <!--      Build the form in Google Forms, embed the iframe        -->
-  <!--      here, and delete this whole <form> block.               -->
-  <!-- ============================================================ -->
-  <section id="register" class="section">
-    <div class="container">
-      <h2>Pre-Register Your Vehicle</h2>
-      <p class="section-intro">
-        Pre-registration is <strong>$20</strong> (vs $25 at the gate) and opens
-        online <strong>April 1, 2026</strong>. Fields marked
-        <span class="required">(required)</span> must be filled in.
-      </p>
-
-      <!-- Placeholder panel: shown after a submit attempt until the real backend is wired up. -->
-      <div id="form-placeholder" class="form-success" hidden role="status" aria-live="polite">
-        <h3>Online pre-registration opens April 1, 2026.</h3>
-        <p>
-          To reserve your spot now, please email
-          <a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a>
-          or call <a href="tel:604-309-8368">604-309-8368</a>.
-          We'll save these details and add the online submit button as soon as
-          it's ready.
-        </p>
-      </div>
-
-      <!-- Error panel: shown if the network submission fails (kept for when a real backend is wired). -->
-      <div id="form-error" class="form-error" hidden role="alert">
-        <h3>We couldn't submit your registration.</h3>
-        <p>
-          Something went wrong sending the form. Please try again, or call
-          <a href="tel:604-309-8368">604-309-8368</a> to register by phone.
-        </p>
-      </div>
-
-      <form
-        id="registration-form"
-        name="country-car-show-pre-register"
-        method="POST"
-        action="#"
-        class="registration-form"
-        novalidate
-      >
-        <div class="form-row">
-          <label for="name">Full name <span class="required">(required)</span></label>
-          <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-error">
-          <span class="field-error" id="name-error" aria-live="polite"></span>
-        </div>
-
-        <div class="form-row">
-          <label for="email">Email address <span class="required">(required)</span></label>
-          <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" aria-describedby="email-error">
-          <span class="field-error" id="email-error" aria-live="polite"></span>
-        </div>
-
-        <div class="form-row">
-          <label for="phone">Phone number <span class="required">(required)</span></label>
-          <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-describedby="phone-error">
-          <span class="field-error" id="phone-error" aria-live="polite"></span>
-        </div>
-
-        <div class="form-row">
-          <label for="vehicle-year">Vehicle year <span class="required">(required)</span></label>
-          <input type="text" id="vehicle-year" name="vehicle-year" required autocomplete="off" aria-describedby="vehicle-year-hint vehicle-year-error">
-          <span class="field-hint" id="vehicle-year-hint">For example: 1957</span>
-          <span class="field-error" id="vehicle-year-error" aria-live="polite"></span>
-        </div>
-
-        <div class="form-row">
-          <label for="vehicle-make">Vehicle make &amp; model <span class="required">(required)</span></label>
-          <input type="text" id="vehicle-make" name="vehicle-make" required autocomplete="off" aria-describedby="vehicle-make-hint vehicle-make-error">
-          <span class="field-hint" id="vehicle-make-hint">For example: Chevrolet Bel Air</span>
-          <span class="field-error" id="vehicle-make-error" aria-live="polite"></span>
-        </div>
-
-        <div class="form-row">
-          <label for="notes">Anything else we should know? <span class="optional">(optional)</span></label>
-          <textarea id="notes" name="notes" rows="4"></textarea>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary btn-submit">Submit Pre-Registration</button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- PHOTO GALLERY — past Country Car Show photos                 -->
-  <!--                                                              -->
-  <!-- Twelve placeholder tiles. Until real photos are added, every -->
-  <!-- slot is a labelled placeholder (dashed border + diagonal     -->
-  <!-- stripes) so visitors and the maintainer can clearly tell     -->
-  <!-- which spots still need filling.                              -->
-  <!--                                                              -->
-  <!-- TO ADD A REAL PHOTO TO ONE SLOT:                             -->
-  <!--   1. Save the photo as a .jpg, about 800x600 pixels.         -->
-  <!--   2. Put it in a /photos/ folder beside index.html.          -->
-  <!--   3. Replace the entire <li class="gallery-item">…</li>      -->
-  <!--      block with:                                             -->
-  <!--                                                              -->
-  <!--      <li class="gallery-item gallery-item-photo">            -->
-  <!--        <img src="photos/your-photo.jpg"                      -->
-  <!--             alt="Short description of what's in the photo">  -->
-  <!--      </li>                                                   -->
-  <!--                                                              -->
-  <!-- See README.md, "How to add photos to the gallery", for       -->
-  <!-- step-by-step instructions written for a non-technical user.  -->
-  <!-- ============================================================ -->
-  <section id="gallery" class="section section-light">
-    <div class="container container-wide">
-      <h2>Photos from Past Shows</h2>
-      <p class="section-intro">
-        Tiles with diagonal stripes are placeholders waiting for real photos
-        from past Country Car Shows. See <a href="README.md">README.md</a> for
-        how to drop yours in.
-      </p>
-
-      <section class="gallery-event" aria-labelledby="gallery-heading">
-        <h3 id="gallery-heading" class="gallery-event-name">Past Country Car Shows</h3>
-        <ul class="gallery" role="list">
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_1]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_2]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_3]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_4]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_5]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_6]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_7]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_8]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_9]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_10]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_11]</span></li>
-          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_12]</span></li>
-        </ul>
-      </section>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SPONSORS — text-only for launch; logos drop in later         -->
-  <!-- ============================================================ -->
-  <section id="sponsors" class="section">
-    <div class="container container-wide">
-      <h2>Thank You to Our Sponsors</h2>
-      <p class="section-intro">
-        The Country Car Show is made possible by the generosity of our local
-        sponsors. Please support the businesses that support our show.
-      </p>
       <ul class="sponsors" role="list">
-        <li class="sponsor">K&amp;M Tune-Up Centre</li>
-        <li class="sponsor">Fresh Co &mdash; Aldergrove Location</li>
-        <li class="sponsor">Zone Garage</li>
-        <li class="sponsor">Sunrise Trailer Sales &amp; Rentals</li>
-        <li class="sponsor">Reimer Hardwoods</li>
-        <li class="sponsor">Glass World</li>
-        <li class="sponsor">TAP Pest Control</li>
-        <li class="sponsor">IDK Decals</li>
-        <li class="sponsor">The Badass Garage</li>
-        <li class="sponsor">JD Farms</li>
+        <li class="card">
+          <h3>Trophies</h3>
+          <p>Trophies awarded at 2:30 PM, plus dash plaques for the first registered entries.</p>
+        </li>
+        <li class="card">
+          <h3>Raffle &amp; 50/50</h3>
+          <p>A raffle and a 50/50 draw run throughout the day &mdash; great prizes to win.</p>
+        </li>
+        <li class="card">
+          <h3>Food &amp; Entertainment</h3>
+          <p>Food and entertainment on site to keep everyone happy from morning to afternoon.</p>
+        </li>
+        <li class="card">
+          <h3>Family-Friendly</h3>
+          <p>All ages welcome, with free admission for spectators. A great day out for the whole family.</p>
+        </li>
       </ul>
+
+      <p>
+        Partial proceeds support the ACSS Automotive Program &mdash; helping
+        local youth enter the automotive profession.
+        <a href="youth-in-trades.html">Learn how the show supports youth in trades &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- EXPLORE — teasers linking to the other pages of the site     -->
+  <!-- ============================================================ -->
+  <section class="section" aria-labelledby="explore-heading">
+    <div class="container container-wide">
+      <h2 id="explore-heading">Explore</h2>
+      <p class="section-intro">
+        There's more to see across the site &mdash; have a look around.
+      </p>
+
+      <ul class="sponsors" role="list">
+        <li class="card">
+          <h3>Photos</h3>
+          <p>Browse pictures from past Country Car Shows.</p>
+          <p><a class="btn btn-secondary" href="gallery.html">View photos</a></p>
+        </li>
+        <li class="card">
+          <h3>Sponsors</h3>
+          <p>Meet the local businesses that make the show possible.</p>
+          <p><a class="btn btn-secondary" href="sponsors.html">See sponsors</a></p>
+        </li>
+        <li class="card">
+          <h3>Winners</h3>
+          <p>See the trophy winners from previous shows.</p>
+          <p><a class="btn btn-secondary" href="winners.html">See winners</a></p>
+        </li>
+        <li class="card">
+          <h3>Youth in Trades</h3>
+          <p>How the show supports the ACSS Automotive Program.</p>
+          <p><a class="btn btn-secondary" href="youth-in-trades.html">Learn more</a></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- QR CODE — quick link to the show's web address               -->
+  <!--                                                              -->
+  <!-- The QR image is a shared asset already generated at          -->
+  <!-- assets/qr-countrycarshow.svg — do NOT regenerate it. The     -->
+  <!-- width/height attributes below cap its size (no CSS allowed   -->
+  <!-- from page files). A full printable version lives on          -->
+  <!-- print-qr.html.                                               -->
+  <!-- ============================================================ -->
+  <section class="section section-light" aria-labelledby="qr-heading">
+    <div class="container">
+      <h2 id="qr-heading">Share the Show</h2>
+      <p class="section-intro">
+        Point your phone camera at the code below to open
+        <strong>countrycarshow.ca</strong>, or share it with a friend.
+      </p>
+
+      <p>
+        <a href="https://countrycarshow.ca" rel="noopener external">
+          <img src="assets/qr-countrycarshow.svg" width="200" height="200" alt="QR code linking to countrycarshow.ca">
+        </a>
+      </p>
+      <p>Scan to visit countrycarshow.ca</p>
+      <p>
+        Need a printable copy for a poster or window?
+        <a href="print-qr.html">Open the printable QR page &rarr;</a>
+      </p>
     </div>
   </section>
 
   <!-- ============================================================ -->
   <!-- CONTACT — show chairman                                      -->
   <!-- ============================================================ -->
-  <section id="contact" class="section section-light">
-    <div class="container">
-      <h2>Contact</h2>
-      <div class="contact-block">
-        <h3>Country Car Show Chairman</h3>
-        <p><strong>John Lundgren</strong></p>
-        <dl class="contact-list">
-          <dt>Email</dt>
-          <dd><a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a></dd>
-          <dt>Phone</dt>
-          <dd><a href="tel:604-309-8368">604-309-8368</a></dd>
-        </dl>
+  <section class="section" aria-labelledby="contact-heading">
+    <div class="container container-wide">
+      <h2 id="contact-heading">Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-block">
+          <h3>Country Car Show Chairman</h3>
+          <p><strong>John Lundgren</strong></p>
+          <dl class="contact-list">
+            <dt>Email</dt>
+            <dd><a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a></dd>
+            <dt>Phone</dt>
+            <dd><a href="tel:604-309-8368">604-309-8368</a></dd>
+          </dl>
+        </div>
       </div>
     </div>
   </section>

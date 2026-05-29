@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Full details for the 12th Annual Country Car Show — Sunday April 26, 2026, 9 AM–3 PM at Aldergrove Community Secondary School. Times, location, entry fees, and online vehicle pre-registration.">
+  <meta name="theme-color" content="#1A2A5C">
+
+  <!-- Open Graph (for link previews when the site is shared) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Country Car Show 2026 — Sunday April 26, Aldergrove">
+  <meta property="og:description" content="12th Annual Country Car Show — hosted by the Central Fraser Valley Chapter of the VCCC.">
+  <meta property="og:locale" content="en_CA">
+
+  <title>2026 Show Details &amp; Pre-Registration — Country Car Show 2026</title>
+
+  <!-- Inline-SVG favicon: a simple steering wheel in the show's navy accent.
+       No separate file needed. To change it, edit the SVG below. -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='26' fill='none' stroke='%231A2A5C' stroke-width='5'/><circle cx='32' cy='32' r='5' fill='%231A2A5C'/><path d='M32 6v20M6 32h20M58 32H38M32 58V38' stroke='%231A2A5C' stroke-width='5' stroke-linecap='round'/></svg>">
+
+  <!-- Google Fonts: Playfair Display (serif headings) + Source Sans 3 (body).
+       These are the only external resources the site loads. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!--
+================================================================================
+  COUNTRY CAR SHOW — 2026 SHOW DETAILS + PRE-REGISTRATION
+================================================================================
+
+  This is the detail page for the current (2026) show: all the practical
+  information a visitor or entrant needs, plus the online pre-registration
+  form. The welcoming landing page is index.html.
+
+  ── COMMON ANNUAL UPDATES ─────────────────────────────────────────────────
+    "12th Annual"                  → bump the number
+    "Sunday, April 26, 2026"       → next year's date
+    "$20 online / $25 at gate"     → ticket prices
+    "Aldergrove Community Secondary School"  → only if the venue changes
+    "John Lundgren" / contact info → if the chairman changes
+    Rename this file (event-2027.html, etc.) for next year's show and update
+    the nav link on every page to match.
+
+  ── PRE-REGISTRATION FORM ─────────────────────────────────────────────────
+    The form on this page does NOT yet submit anywhere — see the big TODO
+    comment directly above the <form> tag. For now, submissions show an
+    inline message asking the visitor to email John Lundgren directly.
+
+================================================================================
+-->
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============================================================== -->
+<!-- HEADER — sticky: brand + phone + primary navigation            -->
+<!-- The .nav-toggle hamburger is hidden on desktop and shown below  -->
+<!-- the desktop breakpoint (script.js wires it up). With JS off the -->
+<!-- nav stays visible, so nothing breaks.                           -->
+<!-- ============================================================== -->
+<header class="site-header" role="banner">
+  <div class="header-top">
+    <div class="brand">
+      <a href="index.html" class="brand-link">
+        <span class="brand-name">Country Car Show</span>
+        <span class="brand-tagline">12th Annual — Sunday, April 26, 2026 — Aldergrove, BC</span>
+      </a>
+    </div>
+
+    <!-- Phone link: shown inline here on desktop (see also the mobile band below). -->
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
+    </a>
+
+    <!-- Hamburger: only visible below the desktop breakpoint (CSS-controlled). -->
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile-only phone band: the desktop breakpoint hides this and the inline
+       phone link above takes over. Keeps the number big and tappable on phones. -->
+  <div class="header-phone-wrap">
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
+    </a>
+  </div>
+
+  <nav class="site-nav" aria-label="Primary">
+    <ul id="primary-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="event-2026.html" aria-current="page">2026 Show</a></li>
+      <li><a href="gallery.html">Photos</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="winners.html">Winners</a></li>
+      <li><a href="youth-in-trades.html">Youth in Trades</a></li>
+      <li><a href="event-2026.html#register" class="nav-cta">Pre-Register</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================ -->
+  <!-- PAGE HEADING + INTRO                                          -->
+  <!-- ============================================================ -->
+  <section class="section" aria-labelledby="event-heading">
+    <div class="container">
+      <p class="hero-eyebrow">12th Annual</p>
+      <h1 id="event-heading">Country Car Show 2026</h1>
+      <p class="section-intro">
+        The Country Car Show is a one-day vintage and classic car show held each
+        spring in Aldergrove, British Columbia. Partial proceeds support the
+        ACSS Automotive Program &mdash; helping local youth enter the automotive
+        profession. <a href="youth-in-trades.html">Read more about youth in trades &rarr;</a>
+      </p>
+      <p>
+        Ready to bring your vehicle? Pre-registration saves you $5 and helps us
+        plan the day.
+        <a href="#register">Jump to pre-registration &darr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- WHEN & WHERE + WHAT TO EXPECT                                 -->
+  <!-- Two-up on desktop (.feature-grid), stacked on phones/tablets. -->
+  <!-- ============================================================ -->
+  <section class="section section-light" aria-labelledby="details-heading">
+    <div class="container container-wide">
+      <div class="feature-grid">
+
+        <div>
+          <h2 id="details-heading">When &amp; Where</h2>
+          <div class="meeting-info" role="region" aria-labelledby="when-where-heading">
+            <h3 id="when-where-heading">Show Day Schedule</h3>
+            <dl class="meeting-list">
+              <dt>Date</dt>
+              <dd>Sunday, April 26, 2026</dd>
+              <dt>Registration</dt>
+              <dd>7:00 AM &ndash; 9:00 AM (car check-in)</dd>
+              <dt>Show Hours</dt>
+              <dd>9:00 AM &ndash; 3:00 PM</dd>
+              <dt>Trophies Awarded</dt>
+              <dd>2:30 PM</dd>
+              <dt>Location</dt>
+              <dd>
+                Aldergrove Community Secondary School<br>
+                26850 29th Avenue, Aldergrove, BC<br>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Aldergrove+Community+Secondary+School+26850+29th+Avenue+Aldergrove+BC" target="_blank" rel="noopener external">Get directions on Google Maps &rarr;</a>
+              </dd>
+              <dt>Entry Fee</dt>
+              <dd><strong>$20 online</strong> (pre-register below, opens April 1, 2026)<br><strong>$25 at the gate</strong></dd>
+              <dt>Spectators</dt>
+              <dd>Free admission</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div>
+          <h2 id="expect-heading">What to Expect</h2>
+          <ul>
+            <li>Vintage and classic cars from across the Fraser Valley</li>
+            <li>Trophies awarded at 2:30 PM</li>
+            <li>Raffle and 50/50 draw</li>
+            <li>Dash plaques for the first registered entries</li>
+            <li>Food and entertainment on site</li>
+            <li>Family-friendly, all ages welcome</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PRE-REGISTER FORM — vehicle pre-registration                 -->
+  <!--                                                              -->
+  <!-- TODO: WIRE UP A REAL BACKEND BEFORE LAUNCH.                  -->
+  <!-- ***** THIS IS THE FORM INTEGRATION POINT. *****             -->
+  <!-- Right now this form does NOT send submissions anywhere.      -->
+  <!-- On submit, script.js intercepts and shows an inline message  -->
+  <!-- asking the visitor to email John Lundgren directly. Three    -->
+  <!-- options to wire real submission, easiest first:              -->
+  <!--                                                              -->
+  <!--   1. Formspree (https://formspree.io)                        -->
+  <!--      Sign up, get a form ID, then change <form action>       -->
+  <!--      to "https://formspree.io/f/YOUR_FORM_ID" and method     -->
+  <!--      "POST". Free plan: 50 submissions/month.                -->
+  <!--                                                              -->
+  <!--   2. Netlify Forms (requires moving hosting to Netlify)      -->
+  <!--      Re-add data-netlify="true" and the bot-field honeypot,  -->
+  <!--      and deploy to Netlify instead of GitHub Pages.          -->
+  <!--                                                              -->
+  <!--   3. Google Forms                                            -->
+  <!--      Build the form in Google Forms, embed the iframe        -->
+  <!--      here, and delete this whole <form> block.               -->
+  <!--                                                              -->
+  <!-- The club still needs to choose one of these. Until then the  -->
+  <!-- placeholder "email John" panel below is what visitors see.   -->
+  <!-- ============================================================ -->
+  <section id="register" class="section section-light">
+    <div class="container">
+      <h2>Pre-Register Your Vehicle</h2>
+      <p class="section-intro">
+        Pre-registration is <strong>$20</strong> (vs $25 at the gate) and opens
+        online <strong>April 1, 2026</strong>. Fields marked
+        <span class="required">(required)</span> must be filled in. Questions?
+        Email <a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a>.
+      </p>
+
+      <!-- Placeholder panel: shown after a submit attempt until the real backend is wired up. -->
+      <div id="form-placeholder" class="form-success" hidden role="status" aria-live="polite">
+        <h3>Online pre-registration opens April 1, 2026.</h3>
+        <p>
+          To reserve your spot now, please email
+          <a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a>
+          or call <a href="tel:604-309-8368">604-309-8368</a>.
+          We'll save these details and add the online submit button as soon as
+          it's ready.
+        </p>
+      </div>
+
+      <!-- Error panel: shown if the network submission fails (kept for when a real backend is wired). -->
+      <div id="form-error" class="form-error" hidden role="alert">
+        <h3>We couldn't submit your registration.</h3>
+        <p>
+          Something went wrong sending the form. Please try again, or call
+          <a href="tel:604-309-8368">604-309-8368</a> to register by phone.
+        </p>
+      </div>
+
+      <form
+        id="registration-form"
+        name="country-car-show-pre-register"
+        method="POST"
+        action="#"
+        class="registration-form"
+        novalidate
+      >
+        <div class="form-row">
+          <label for="name">Full name <span class="required">(required)</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-error">
+          <span class="field-error" id="name-error" aria-live="polite"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email address <span class="required">(required)</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" aria-describedby="email-error">
+          <span class="field-error" id="email-error" aria-live="polite"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Phone number <span class="required">(required)</span></label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-describedby="phone-error">
+          <span class="field-error" id="phone-error" aria-live="polite"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="vehicle-year">Vehicle year <span class="required">(required)</span></label>
+          <input type="text" id="vehicle-year" name="vehicle-year" required autocomplete="off" aria-describedby="vehicle-year-hint vehicle-year-error">
+          <span class="field-hint" id="vehicle-year-hint">For example: 1957</span>
+          <span class="field-error" id="vehicle-year-error" aria-live="polite"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="vehicle-make">Vehicle make &amp; model <span class="required">(required)</span></label>
+          <input type="text" id="vehicle-make" name="vehicle-make" required autocomplete="off" aria-describedby="vehicle-make-hint vehicle-make-error">
+          <span class="field-hint" id="vehicle-make-hint">For example: Chevrolet Bel Air</span>
+          <span class="field-error" id="vehicle-make-error" aria-live="polite"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="notes">Anything else we should know? <span class="optional">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="4"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-submit">Submit Pre-Registration</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT — short line for questions                           -->
+  <!-- ============================================================ -->
+  <section class="section" aria-labelledby="contact-heading">
+    <div class="container">
+      <h2 id="contact-heading">Questions about the show?</h2>
+      <p>
+        Contact Show Chairman <strong>John Lundgren</strong> at
+        <a href="mailto:johnlundgren54@hotmail.com">johnlundgren54@hotmail.com</a>
+        or <a href="tel:604-309-8368">604-309-8368</a>.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================== -->
+<!-- FOOTER                                                         -->
+<!-- ============================================================== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container container-wide">
+    <p>&copy; <span id="current-year">2026</span> Central Fraser Valley Chapter, Vintage Car Club of Canada. All rights reserved.</p>
+    <p>
+      Visit our chapter site at
+      <a href="https://fraservalley.vccc.com" rel="noopener external">fraservalley.vccc.com</a>
+      &middot; National club:
+      <a href="https://vccc.com" rel="noopener external">Vintage Car Club of Canada</a>
+    </p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

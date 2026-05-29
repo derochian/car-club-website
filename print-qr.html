@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex">
-  <meta name="description" content="That page couldn't be found. Find Country Car Show event details, photos, sponsors, and contact info from the home page.">
+  <meta name="description" content="Printable QR-code flyer for the Country Car Show 2026 — scan to visit countrycarshow.ca.">
   <meta name="theme-color" content="#1A2A5C">
 
   <!-- Open Graph (for link previews when the site is shared) -->
@@ -13,7 +13,7 @@
   <meta property="og:description" content="12th Annual Country Car Show — hosted by the Central Fraser Valley Chapter of the VCCC.">
   <meta property="og:locale" content="en_CA">
 
-  <title>Page not found — Country Car Show 2026</title>
+  <title>Printable QR Flyer — Country Car Show 2026</title>
 
   <!-- Inline-SVG favicon: a simple steering wheel in the show's navy accent.
        No separate file needed. To change it, edit the SVG below. -->
@@ -26,6 +26,76 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- ============================================================== -->
+  <!-- PAGE-SCOPED STYLES (this printable page ONLY)                  -->
+  <!--                                                                -->
+  <!-- Per the project rules, page authors do NOT add global CSS to   -->
+  <!-- styles.css. This <style> block is the single allowed           -->
+  <!-- exception: it styles the printable QR flyer for both screen    -->
+  <!-- and print, and lives here so it never affects other pages.     -->
+  <!-- Everything is namespaced under .qr-flyer.                      -->
+  <!-- ============================================================== -->
+  <style>
+    /* Centered flyer panel — large QR with the show name, date and URL. */
+    .qr-flyer {
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .qr-flyer-title {
+      margin-bottom: var(--space-xs);
+    }
+    .qr-flyer-date {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--color-accent);
+      font-size: clamp(18px, 3vw, 22px);
+      margin: 0 0 var(--space-lg);
+    }
+    /* The QR itself — ~320px on screen, centered. The SVG scales crisply. */
+    .qr-flyer-code {
+      width: 320px;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto var(--space-md);
+    }
+    .qr-flyer-caption {
+      font-weight: 700;
+      margin-bottom: var(--space-xxs);
+    }
+    /* Plain-text URL so it works even if someone cannot scan the code. */
+    .qr-flyer-url {
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 700;
+      color: var(--color-accent);
+      letter-spacing: 0.01em;
+      margin: 0 0 var(--space-lg);
+    }
+    /* Screen-only helper line + print button (hidden when printing). */
+    .qr-flyer-actions {
+      margin-top: var(--space-md);
+    }
+    .qr-flyer-hint {
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+    }
+
+    /* PRINT: the global print CSS in styles.css already hides the site
+       header, nav and footer. Here we make the flyer fill the page,
+       enlarge the QR for easy scanning, and hide the screen-only actions. */
+    @media print {
+      .qr-flyer {
+        max-width: none;
+      }
+      .qr-flyer-code {
+        width: 4.5in;   /* large, scannable QR on a printed sheet */
+      }
+      .qr-flyer-actions {
+        display: none;  /* no buttons / hints on the printed copy */
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -36,6 +106,7 @@
 <!-- The .nav-toggle hamburger is hidden on desktop and shown below  -->
 <!-- the desktop breakpoint (script.js wires it up). With JS off the -->
 <!-- nav stays visible, so nothing breaks.                           -->
+<!-- This page is NOT in the nav, so no link carries aria-current.    -->
 <!-- ============================================================== -->
 <header class="site-header" role="banner">
   <div class="header-top">
@@ -82,19 +153,47 @@
 </header>
 
 <main id="main">
+
+  <!-- ============================================================== -->
+  <!-- PRINTABLE QR FLYER                                             -->
+  <!--                                                                -->
+  <!-- The QR code below points to https://countrycarshow.ca.         -->
+  <!-- The artwork lives in assets/qr-countrycarshow.svg (scalable,   -->
+  <!-- best for print) with a .png raster fallback. If the website's  -->
+  <!-- domain ever changes, REGENERATE both QR files for the new URL  -->
+  <!-- and REPRINT this flyer.                                        -->
+  <!-- ============================================================== -->
   <section class="section section-centered">
     <div class="container">
-      <h1>Page not found</h1>
-      <p class="hero-message">
-        We couldn't find the page you were looking for. The links above will
-        take you to event details, pre-registration, photos, sponsors, and
-        more.
-      </p>
-      <p>
-        <a class="btn btn-primary btn-large" href="index.html">Go to the show home page</a>
-      </p>
+      <div class="qr-flyer">
+
+        <h1 class="qr-flyer-title">Country Car Show 2026</h1>
+        <p class="qr-flyer-date">Sunday, April 26, 2026 &middot; Aldergrove, BC</p>
+
+        <!-- Large QR using the scalable SVG; the PNG is a raster fallback
+             available at assets/qr-countrycarshow.png if needed. -->
+        <img class="qr-flyer-code" src="assets/qr-countrycarshow.svg"
+             alt="QR code linking to countrycarshow.ca">
+
+        <p class="qr-flyer-caption">Scan to visit</p>
+        <p class="qr-flyer-url">countrycarshow.ca</p>
+
+        <!-- Screen-only: a way to print, plus a script-free instruction.
+             Hidden automatically when the page is printed. -->
+        <div class="qr-flyer-actions">
+          <p>
+            <a class="btn btn-secondary" href="https://countrycarshow.ca" rel="noopener external">Open the website</a>
+          </p>
+          <p class="qr-flyer-hint">
+            To print this flyer, use your browser's Print command (Ctrl+P, or
+            Cmd+P on a Mac).
+          </p>
+        </div>
+
+      </div>
     </div>
   </section>
+
 </main>
 
 <!-- ============================================================== -->

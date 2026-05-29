@@ -1,21 +1,36 @@
-# Country Car Show 2026 — website
+# Country Car Show — website
 
-This is the single-page website for the **Country Car Show**, hosted each spring in Aldergrove, BC by the Central Fraser Valley Chapter of the Vintage Car Club of Canada (VCCC).
+This is the website for the **Country Car Show**, hosted each spring in Aldergrove, BC by the Central Fraser Valley Chapter of the Vintage Car Club of Canada (VCCC).
 
 - **Live site:** https://derochian.github.io/car-club-website/
 - **Source code:** https://github.com/derochian/car-club-website
+- **Future address:** countrycarshow.ca (the QR code already points here; the domain just needs to be pointed at the site — Terry handles that)
 
-There are no build tools. The site is six files in this folder, served as plain HTML/CSS/JS by GitHub Pages.
+There are no build tools. The site is plain HTML/CSS/JS, served as-is by GitHub Pages. Every page shares one stylesheet and one script.
 
 ```
 Car Club Website/
-├── index.html         ← the whole one-page site
-├── styles.css         ← all styling (colors live at the top in :root)
-├── script.js          ← year update + form validation
-├── thank-you.html     ← shown after a contact form submission (future)
-├── 404.html           ← shown when a link goes to a missing page
-└── README.md          ← this file
+├── index.html            ← Home (landing page)
+├── event-2026.html       ← 2026 show details + online pre-registration form
+├── gallery.html          ← Photos from past shows
+├── sponsors.html         ← Sponsors who donate prizes (logos + links)
+├── winners.html          ← Prize / trophy winners
+├── youth-in-trades.html  ← The youth automotive program the show supports
+├── print-qr.html         ← A printable flyer page with the QR code
+├── thank-you.html        ← Shown after a contact form submission (future)
+├── 404.html              ← Shown when a link goes to a missing page
+│
+├── styles.css            ← ALL styling for every page (colors live at the top in :root)
+├── script.js             ← Menu button + year update + form validation
+├── assets/               ← Shared images (the QR code)
+├── photos/               ← Gallery photos
+├── sponsors/             ← Sponsor logos
+│
+├── LAYOUT.md             ← The shared page template + list of reusable styles (for editors)
+└── README.md             ← this file
 ```
+
+> **Every page shares the same header, navigation, and footer.** That shared block is written out near the top of each `.html` file. If you change the menu (for example, add a page), you must make the same change in **every** page's header. The exact block to copy is in **LAYOUT.md**.
 
 ---
 
@@ -40,32 +55,25 @@ If you're editing on your own machine, GitHub Pages doesn't allow drag-and-drop 
 
 ## How to edit the most common things
 
-All content lives in `index.html`. Open it in **FrontPage 2003** (or any editor — Notepad works too in a pinch).
+Open any `.html` file in **FrontPage 2003** (or any editor — Notepad works too in a pinch). Each file has helpful comments near the top explaining what it is.
 
-### Update the event date for next year
+### Update the event date / prices for next year
 
-Use **Find & Replace** (Edit menu → Replace, or Ctrl+H):
+The show date and prices appear on a few pages. Use **Find & Replace** (Edit menu → Replace, or Ctrl+H) **in each page that mentions them** — mainly `index.html` and `event-2026.html`:
 
 | Find | Replace with |
 |---|---|
 | `12th Annual` | `13th Annual` (next year's count) |
 | `Sunday, April 26, 2026` | the new full date |
 | `April 26, 2026` | shortened form of the new date |
-
-Save the file. That covers the hero, header, page title, and social-share preview.
-
-### Update ticket prices
-
-Use Find & Replace:
-
-| Find | Replace with |
-|---|---|
 | `$20 online` | new online price |
 | `$25 at the gate` | new gate price |
 
+When you create next year's show page, the cleanest approach is to **copy `event-2026.html` to `event-2027.html`**, update the contents, and then update the "2026 Show" / "Pre-Register" menu links on **every** page to point at the new file.
+
 ### Update the contact person
 
-If the Country Car Show Chairman changes, replace these values everywhere they appear:
+If the Country Car Show Chairman changes, replace these values **everywhere they appear (all pages)**:
 
 | Find | Replace with |
 |---|---|
@@ -73,66 +81,60 @@ If the Country Car Show Chairman changes, replace these values everywhere they a
 | `johnlundgren54@hotmail.com` | new email |
 | `604-309-8368` | new phone |
 
-### Update a sponsor name or add/remove a sponsor
+### Update a sponsor
 
-Sponsors live in a list block near the bottom of `index.html`. Look for the `<!-- SPONSORS -->` comment. Each sponsor is one line:
-
-```html
-<li class="sponsor">K&amp;M Tune-Up Centre</li>
-```
-
-To add a sponsor, copy any of these lines and change the name. To remove a sponsor, delete the whole line. To rename one, change just the text between the tags. Note: `&amp;` is the way to write an ampersand (`&`) inside HTML.
+Sponsors live on **`sponsors.html`**. Each sponsor is one `<li class="sponsor">` block containing a logo image, the name, and a "Visit website" link. Comments in that file explain how to (a) swap a placeholder logo for a real one and (b) set the sponsor's real website address. Note: `&amp;` is the way to write an ampersand (`&`) inside HTML.
 
 ---
 
 ## How to add photos to the gallery
 
-The gallery starts with twelve **placeholder tiles** (the ones with diagonal stripes). To replace a placeholder with a real photo:
+Photos live on **`gallery.html`**. It starts with a few sample tiles plus twelve **placeholder tiles** (the ones with diagonal stripes). To replace a placeholder with a real photo:
 
 1. **Save the photo** as a JPEG, roughly 800 × 600 pixels. (Most phone cameras output much larger files — resizing first keeps the site fast to load.)
-2. **Put it in a `photos/` folder** next to `index.html`. If that folder doesn't exist yet, create it. Give the photo a short, all-lowercase, no-spaces filename like `2024-mustang-blue.jpg`.
-3. **Open `index.html`** and find the `<!-- PHOTO GALLERY -->` block. Each placeholder looks like this:
+2. **Put it in the `photos/` folder** next to the pages. Give the photo a short, all-lowercase, no-spaces filename like `2024-mustang-blue.jpg`.
+3. **Open `gallery.html`** and find a placeholder line. Each looks like this:
    ```html
    <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_1]</span></li>
    ```
-4. **Replace** that single line with:
+4. **Replace** that single line with (note `loading="lazy"` keeps the page fast, and `alt` describes the photo for screen readers):
    ```html
    <li class="gallery-item gallery-item-photo">
-     <img src="photos/2024-mustang-blue.jpg" alt="Short description of what's in the photo">
+     <img src="photos/2024-mustang-blue.jpg" alt="Short description of the photo"
+          loading="lazy" width="800" height="600">
    </li>
    ```
 5. **Save** the file. That photo will appear in the gallery.
 
-Remaining placeholders (the ones you haven't replaced) keep showing the dashed-stripe pattern so it's clear which slots are still empty.
+Remaining placeholders keep showing the dashed-stripe pattern so it's clear which slots are still empty. To **remove** an empty placeholder, just delete its `<li>` line.
 
-To **remove an empty placeholder** (so you only show, say, 6 photos), just delete the corresponding `<li>` line.
+---
+
+## The QR code
+
+`assets/qr-countrycarshow.svg` (and a `.png` copy) is a QR code that points to **https://countrycarshow.ca**. It appears on the home page and on `print-qr.html` (a clean page made for printing a flyer). If the show's web address ever changes, the QR code must be regenerated to match — ask whoever maintains the site.
 
 ---
 
 ## How to wire up the pre-registration form (when ready)
 
-Right now the form **collects values and validates them, but does not actually send the data anywhere**. When a visitor submits, they see a "please email John directly" message instead.
+The pre-registration form is on **`event-2026.html`**. Right now it **collects values and validates them, but does not actually send the data anywhere** — when a visitor submits, they see a "please email John directly" message instead.
 
-To make the form really send, open `index.html`, find the `<!-- PRE-REGISTER FORM -->` block, and follow the TODO comment above the `<form>` tag. The three options listed there, simplest first:
+To make the form really send, open `event-2026.html`, find the big `TODO` comment above the `<form>` tag (it's marked **"THIS IS THE FORM INTEGRATION POINT"**), and follow the options listed there, simplest first:
 
 1. **Formspree** — sign up at https://formspree.io, get a form ID, change the form's `action` attribute. Free for 50 submissions/month.
 2. **Netlify** — move site hosting from GitHub Pages back to Netlify; re-add `data-netlify="true"` and the honeypot field.
 3. **Google Forms** — build the form in Google Forms, embed the iframe in place of the existing form block.
 
-After wiring, also update `script.js` — the `showPlaceholder()` call in the submit handler should be replaced with the real fetch / submit logic.
+After wiring, also update `script.js` — the `showPlaceholder()` call in the submit handler should be replaced with the real fetch / submit logic. **The club still needs to choose one of these options.**
 
 ---
 
-## Older-audience design notes (for whoever maintains the styling)
+## For whoever maintains the styling
 
-The styling in `styles.css` is deliberately calibrated for an older audience:
+All styling is in **`styles.css`**, and the shared page template + the full list of reusable style names is documented in **`LAYOUT.md`**. A few things to know:
 
-- Body text 18–20 px (no smaller)
-- Line height 1.6
-- High contrast (no light grey on white)
-- Buttons at least 48 px tall (56 px for the primary submit)
-- Visible focus rings on every interactive element
-
-When touching `styles.css`, keep these in mind. The color palette is set in the `:root` block at the top of the file — change those tokens to retheme the whole site without touching the rest.
-
-The colors are pulled from the 2026 event poster: deep navy `#1A2A5C` (identity), warm gold `#F2B705` (accents), red `#C8102E` (the primary call-to-action button only).
+- The stylesheet is **mobile-first**: the plain rules describe phones, and three `@media (min-width: …)` blocks at the bottom enhance the layout for tablet (48em), desktop (64em — where the full menu bar appears instead of the Menu button), and large screens (90em).
+- The design is calibrated for an **older audience**: body text 18–20 px, line height 1.6, high contrast (no light grey on white), buttons at least 48 px tall, and visible focus rings. Please don't regress these. Form inputs are 19 px on purpose so iPhones don't zoom in when you tap a field.
+- The color palette is set in the `:root` block at the top of `styles.css` — change those tokens to retheme the whole site without touching the rest. Colors are pulled from the 2026 event poster: deep navy `#1A2A5C` (identity), warm gold `#F2B705` (accents), red `#C8102E` (the primary call-to-action button only).
+- **Don't add page-specific styling inside the individual pages.** Reuse the style names listed in `LAYOUT.md`. The only exception is `print-qr.html`, which has a small style block of its own because it's a special printable page.

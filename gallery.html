@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Photos from past Country Car Shows in Aldergrove, BC — classic cars, hot rods, and family fun.">
+  <meta name="theme-color" content="#1A2A5C">
+
+  <!-- Open Graph (for link previews when the site is shared) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Country Car Show 2026 — Sunday April 26, Aldergrove">
+  <meta property="og:description" content="12th Annual Country Car Show — hosted by the Central Fraser Valley Chapter of the VCCC.">
+  <meta property="og:locale" content="en_CA">
+
+  <title>Photos — Country Car Show 2026</title>
+
+  <!-- Inline-SVG favicon: a simple steering wheel in the show's navy accent.
+       No separate file needed. To change it, edit the SVG below. -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='26' fill='none' stroke='%231A2A5C' stroke-width='5'/><circle cx='32' cy='32' r='5' fill='%231A2A5C'/><path d='M32 6v20M6 32h20M58 32H38M32 58V38' stroke='%231A2A5C' stroke-width='5' stroke-linecap='round'/></svg>">
+
+  <!-- Google Fonts: Playfair Display (serif headings) + Source Sans 3 (body).
+       These are the only external resources the site loads. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============================================================== -->
+<!-- HEADER — sticky: brand + phone + primary navigation            -->
+<!-- The .nav-toggle hamburger is hidden on desktop and shown below  -->
+<!-- the desktop breakpoint (script.js wires it up). With JS off the -->
+<!-- nav stays visible, so nothing breaks.                           -->
+<!-- ============================================================== -->
+<header class="site-header" role="banner">
+  <div class="header-top">
+    <div class="brand">
+      <a href="index.html" class="brand-link">
+        <span class="brand-name">Country Car Show</span>
+        <span class="brand-tagline">12th Annual — Sunday, April 26, 2026 — Aldergrove, BC</span>
+      </a>
+    </div>
+
+    <!-- Phone link: shown inline here on desktop (see also the mobile band below). -->
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
+    </a>
+
+    <!-- Hamburger: only visible below the desktop breakpoint (CSS-controlled). -->
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile-only phone band: the desktop breakpoint hides this and the inline
+       phone link above takes over. Keeps the number big and tappable on phones. -->
+  <div class="header-phone-wrap">
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
+    </a>
+  </div>
+
+  <nav class="site-nav" aria-label="Primary">
+    <ul id="primary-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="event-2026.html">2026 Show</a></li>
+      <li><a href="gallery.html" aria-current="page">Photos</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="winners.html">Winners</a></li>
+      <li><a href="youth-in-trades.html">Youth in Trades</a></li>
+      <li><a href="event-2026.html#register" class="nav-cta">Pre-Register</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================== -->
+  <!-- PHOTO GALLERY                                                  -->
+  <!-- ============================================================== -->
+  <section class="section">
+    <div class="container container-wide">
+      <h2>Photos from Past Shows</h2>
+      <p class="section-intro">
+        A look back at the classic cars, hot rods, and good company from previous
+        Country Car Shows. Tiles with a dashed border and diagonal stripes are
+        empty slots waiting for real photos — they show the maintainer which
+        spaces still need a picture.
+      </p>
+
+      <!-- ============================================================== -->
+      <!-- HOW TO ADD A PHOTO (for the maintainer — works in FrontPage)   -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- 1. Save the photo as a JPEG, roughly 800 x 600 pixels. (Phone  -->
+      <!--    cameras make much bigger files; resizing first keeps the    -->
+      <!--    page fast to load.)                                         -->
+      <!-- 2. Put the file in the "photos" folder next to this page. Use  -->
+      <!--    a short, all-lowercase, no-spaces name like                 -->
+      <!--    2024-mustang-blue.jpg                                       -->
+      <!-- 3. Find a placeholder line below. It looks like this:          -->
+      <!--      <li class="gallery-item">                                 -->
+      <!--        <span class="gallery-placeholder-label">[PHOTO_1]</span>-->
+      <!--      </li>                                                      -->
+      <!-- 4. Replace that single line with a real-photo tile (copy the   -->
+      <!--    pattern from the "Sample photos" group at the top):         -->
+      <!--      <li class="gallery-item gallery-item-photo">              -->
+      <!--        <img src="photos/2024-mustang-blue.jpg"                 -->
+      <!--             alt="Short description of what's in the photo"      -->
+      <!--             loading="lazy" width="800" height="600">           -->
+      <!--      </li>                                                      -->
+      <!--    Always keep loading="lazy", a descriptive alt, and the      -->
+      <!--    width/height numbers (they reserve space so the page does   -->
+      <!--    not jump while photos load).                                -->
+      <!-- 5. Save the file. The photo appears in the gallery.            -->
+      <!-- To show fewer photos, just delete a whole placeholder <li>.    -->
+      <!-- ============================================================== -->
+
+      <!-- Sample-photo group: a copy-ready demonstration of the real <img>
+           pattern. The three images below live in the "photos" folder.
+           Swap them for real photos when you have them, or delete this whole
+           .gallery-event block if you would rather start from placeholders. -->
+      <div class="gallery-event">
+        <h3 class="gallery-event-name">Sample photos (replace with your own)</h3>
+        <ul class="gallery" role="list">
+          <li class="gallery-item gallery-item-photo">
+            <img src="photos/sample-1.png" alt="Example gallery photo placeholder in the show's navy and cream colours" loading="lazy" width="800" height="600">
+          </li>
+          <li class="gallery-item gallery-item-photo">
+            <img src="photos/sample-2.png" alt="Example gallery photo placeholder in the show's navy and gold colours" loading="lazy" width="800" height="600">
+          </li>
+          <li class="gallery-item gallery-item-photo">
+            <img src="photos/sample-3.png" alt="Example gallery photo placeholder with navy and gold banners" loading="lazy" width="800" height="600">
+          </li>
+        </ul>
+      </div>
+
+      <!-- Placeholder group: twelve empty slots for real photos from past shows.
+           Each one keeps the dashed-stripe look until a photo replaces it. -->
+      <div class="gallery-event">
+        <h3 class="gallery-event-name">Past Country Car Shows</h3>
+        <ul class="gallery" role="list">
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_1]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_2]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_3]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_4]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_5]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_6]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_7]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_8]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_9]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_10]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_11]</span></li>
+          <li class="gallery-item"><span class="gallery-placeholder-label">[PHOTO_12]</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Friendly call-to-action back to the 2026 show details. -->
+  <section class="section section-light section-centered">
+    <div class="container">
+      <h2>Come Make Some Memories in 2026</h2>
+      <p class="hero-message">
+        Want to see your car in next year's gallery? Join us at the 12th Annual
+        Country Car Show on Sunday, April 26, 2026 in Aldergrove, BC.
+      </p>
+      <p>
+        <a class="btn btn-secondary" href="event-2026.html">See the 2026 show details</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================== -->
+<!-- FOOTER                                                         -->
+<!-- ============================================================== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container container-wide">
+    <p>&copy; <span id="current-year">2026</span> Central Fraser Valley Chapter, Vintage Car Club of Canada. All rights reserved.</p>
+    <p>
+      Visit our chapter site at
+      <a href="https://fraservalley.vccc.com" rel="noopener external">fraservalley.vccc.com</a>
+      &middot; National club:
+      <a href="https://vccc.com" rel="noopener external">Vintage Car Club of Canada</a>
+    </p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

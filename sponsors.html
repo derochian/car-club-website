@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Thank you to the local businesses who donated prizes to the Country Car Show in Aldergrove, BC.">
+  <meta name="theme-color" content="#1A2A5C">
+
+  <!-- Open Graph (for link previews when the site is shared) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Country Car Show 2026 — Sunday April 26, Aldergrove">
+  <meta property="og:description" content="12th Annual Country Car Show — hosted by the Central Fraser Valley Chapter of the VCCC.">
+  <meta property="og:locale" content="en_CA">
+
+  <title>Sponsors — Country Car Show 2026</title>
+
+  <!-- Inline-SVG favicon: a simple steering wheel in the show's navy accent.
+       No separate file needed. To change it, edit the SVG below. -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='26' fill='none' stroke='%231A2A5C' stroke-width='5'/><circle cx='32' cy='32' r='5' fill='%231A2A5C'/><path d='M32 6v20M6 32h20M58 32H38M32 58V38' stroke='%231A2A5C' stroke-width='5' stroke-linecap='round'/></svg>">
+
+  <!-- Google Fonts: Playfair Display (serif headings) + Source Sans 3 (body).
+       These are the only external resources the site loads. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============================================================== -->
+<!-- HEADER — sticky: brand + phone + primary navigation            -->
+<!-- The .nav-toggle hamburger is hidden on desktop and shown below  -->
+<!-- the desktop breakpoint (script.js wires it up). With JS off the -->
+<!-- nav stays visible, so nothing breaks.                           -->
+<!-- ============================================================== -->
+<header class="site-header" role="banner">
+  <div class="header-top">
+    <div class="brand">
+      <a href="index.html" class="brand-link">
+        <span class="brand-name">Country Car Show</span>
+        <span class="brand-tagline">12th Annual — Sunday, April 26, 2026 — Aldergrove, BC</span>
+      </a>
+    </div>
+
+    <!-- Phone link: shown inline here on desktop (see also the mobile band below). -->
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
+    </a>
+
+    <!-- Hamburger: only visible below the desktop breakpoint (CSS-controlled). -->
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile-only phone band: the desktop breakpoint hides this and the inline
+       phone link above takes over. Keeps the number big and tappable on phones. -->
+  <div class="header-phone-wrap">
+    <a class="header-phone" href="tel:604-309-8368" aria-label="Call John Lundgren at 604-309-8368">
+      <span class="header-phone-label">Questions? Call John:</span>
+      <span class="header-phone-number">604-309-8368</span>
+    </a>
+  </div>
+
+  <nav class="site-nav" aria-label="Primary">
+    <ul id="primary-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="event-2026.html">2026 Show</a></li>
+      <li><a href="gallery.html">Photos</a></li>
+      <li><a href="sponsors.html" aria-current="page">Sponsors</a></li>
+      <li><a href="winners.html">Winners</a></li>
+      <li><a href="youth-in-trades.html">Youth in Trades</a></li>
+      <li><a href="event-2026.html#register" class="nav-cta">Pre-Register</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================== -->
+  <!-- SPONSORS                                                       -->
+  <!-- ============================================================== -->
+  <section class="section">
+    <div class="container container-wide">
+      <h2>Our Sponsors</h2>
+      <p class="section-intro">
+        A heartfelt thank-you to the local businesses who donated prizes to the
+        Country Car Show. Their generosity makes the day possible — please
+        support them, and let them know you saw them here.
+      </p>
+
+      <!-- ============================================================== -->
+      <!-- HOW TO UPDATE A SPONSOR (for the maintainer — works in         -->
+      <!-- FrontPage). Each sponsor below is one <li class="sponsor">     -->
+      <!-- holding three things: a logo image, the business name, and a   -->
+      <!-- "Visit website" link.                                          -->
+      <!--                                                                -->
+      <!-- (a) TO SWAP A PLACEHOLDER LOGO FOR A REAL ONE:                 -->
+      <!--     1. Save the real logo as a PNG (or JPEG), roughly          -->
+      <!--        240 x 120 pixels, in the "sponsors" folder next to this -->
+      <!--        page. Use a short, all-lowercase, no-spaces name like   -->
+      <!--        zone-garage.png                                         -->
+      <!--     2. In that sponsor's tile, change the src="..." to point   -->
+      <!--        at the new file. Keep loading="lazy", the alt text, and -->
+      <!--        the width/height numbers.                               -->
+      <!--                                                                -->
+      <!-- (b) TO SET THE REAL WEBSITE ADDRESS:                           -->
+      <!--     In that sponsor's tile, change href="#" on the             -->
+      <!--     "Visit website" link to the business's real web address,   -->
+      <!--     for example href="https://www.zonegarage.ca". Leave the    -->
+      <!--     rel and target attributes as they are.                     -->
+      <!--                                                                -->
+      <!-- To add a sponsor, copy a whole <li class="sponsor"> ... </li>  -->
+      <!-- block and change the three things above. To remove one, delete -->
+      <!-- the whole block. Write an ampersand as &amp; inside HTML.      -->
+      <!-- ============================================================== -->
+
+      <ul class="sponsors" role="list">
+
+        <li class="sponsor">
+          <img src="sponsors/km-tune-up.png" alt="K&amp;M Tune-Up Centre logo" loading="lazy" width="240" height="120">
+          <p>K&amp;M Tune-Up Centre</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/fresh-co.png" alt="Fresh Co (Aldergrove Location) logo" loading="lazy" width="240" height="120">
+          <p>Fresh Co (Aldergrove Location)</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/zone-garage.png" alt="Zone Garage logo" loading="lazy" width="240" height="120">
+          <p>Zone Garage</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/sunrise-trailer.png" alt="Sunrise Trailer Sales &amp; Rentals logo" loading="lazy" width="240" height="120">
+          <p>Sunrise Trailer Sales &amp; Rentals</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/reimer-hardwoods.png" alt="Reimer Hardwoods logo" loading="lazy" width="240" height="120">
+          <p>Reimer Hardwoods</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/glass-world.png" alt="Glass World logo" loading="lazy" width="240" height="120">
+          <p>Glass World</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/tap-pest-control.png" alt="TAP Pest Control logo" loading="lazy" width="240" height="120">
+          <p>TAP Pest Control</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/idk-decals.png" alt="IDK Decals logo" loading="lazy" width="240" height="120">
+          <p>IDK Decals</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/the-badass-garage.png" alt="The Badass Garage logo" loading="lazy" width="240" height="120">
+          <p>The Badass Garage</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+        <li class="sponsor">
+          <img src="sponsors/jd-farms.png" alt="JD Farms logo" loading="lazy" width="240" height="120">
+          <p>JD Farms</p>
+          <!-- TODO: replace # with the sponsor's real URL -->
+          <a href="#" rel="noopener external" target="_blank">Visit website</a>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================== -->
+<!-- FOOTER                                                         -->
+<!-- ============================================================== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container container-wide">
+    <p>&copy; <span id="current-year">2026</span> Central Fraser Valley Chapter, Vintage Car Club of Canada. All rights reserved.</p>
+    <p>
+      Visit our chapter site at
+      <a href="https://fraservalley.vccc.com" rel="noopener external">fraservalley.vccc.com</a>
+      &middot; National club:
+      <a href="https://vccc.com" rel="noopener external">Vintage Car Club of Canada</a>
+    </p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
